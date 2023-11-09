@@ -6,6 +6,8 @@ import Login from '../components/Login/Login';
 import Register from "../components/Register/Register";
 import Forgot from "../components/Forgot/Forgot";
 import Blog from "../components/Blog/Blog";
+import Profile from '../components/Profile/Profile';
+import Private from "./Private";
 
 const Routes = createBrowserRouter([
     {
@@ -32,6 +34,10 @@ const Routes = createBrowserRouter([
             {
                 path: "forgot",
                 element: <Forgot></Forgot>
+            },
+            {
+                path: "profile",
+                element: <Private><Profile></Profile></Private>
             }
         ]
     }

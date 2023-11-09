@@ -10,13 +10,11 @@ const Navbar = () => {
 
     const { user, logout } = useContext(AuthContext);
 
-    const notify = () => toast.position("Wow so easy !");
-
     const logoutHandler = () => {
         logout()
             .then(result => {
                 console.log(result);
-                toast.success("Success Notification !", {
+                toast.success("Logout Successfully !!", {
                     position: toast.POSITION.TOP_CENTER
                 });
             })
@@ -76,13 +74,12 @@ const Navbar = () => {
                     </button>
                     {(user) ?
                         <>
-                            <button className="tooltip" data-tip="Profile"><PiUserCircle className="text-lg md:text-2xl" /></button>
+                            <button className="tooltip" data-tip="Profile"><Link to="/profile"><PiUserCircle className="text-lg md:text-2xl" /></Link></button>
                             <button onClick={logoutHandler} className="tooltip" data-tip="Logout"><PiSignOut className="text-lg md:text-2xl" /></button>
                         </> :
                         <>
-                            <button className="tooltip" data-tip="Login"><PiSignIn className="text-lg md:text-2xl" /></button>
+                            <button className="tooltip" data-tip="Login"><Link to="/login"><PiSignIn className="text-lg md:text-2xl" /></Link></button>
                         </>}
-                    <button onClick={notify}>Notify !</button>
                 </div>
             </div>
             <br /><br />
