@@ -1,4 +1,4 @@
-import { } from "react-icons/fa6";
+import { PiHeart, PiListBold, PiShoppingBag, PiSignIn, PiSignOut, PiUserCircle } from "react-icons/pi";
 import logo from "../../assets/toycorner-logo.png";
 import { Link } from "react-router-dom";
 
@@ -10,16 +10,18 @@ const Navbar = () => {
                 <div className="navbar-start">
                     <details className="dropdown">
                         <summary tabIndex={0} className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                            <PiListBold className="text-lg" />
                         </summary>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
-                            <li>
-                                <a>Parent</a>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li tabIndex={0}>
+                                <details>
+                                    <summary>Category</summary>
+                                    <ul className="p-2">
+                                        <li><a>Submenu 1</a></li>
+                                        <li><a>Submenu 2</a></li>
+                                    </ul>
+                                </details>
                             </li>
                             <li><a>Item 3</a></li>
                         </ul>
@@ -30,10 +32,10 @@ const Navbar = () => {
                 </div>
                 <div className="hidden navbar-center lg:flex">
                     <ul className="px-1 menu menu-horizontal">
-                        <li><a>Item 1</a></li>
+                        <li><Link to="/">Home</Link></li>
                         <li tabIndex={0}>
                             <details>
-                                <summary>Parent</summary>
+                                <summary>Category</summary>
                                 <ul className="p-2">
                                     <li><a>Submenu 1</a></li>
                                     <li><a>Submenu 2</a></li>
@@ -43,8 +45,12 @@ const Navbar = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+                <div className="navbar-end [&>*]:ml-1 hover:[&>*]:text-red-600">
+                    <button><PiHeart className="text-lg md:text-2xl" /></button>
+                    <button><PiShoppingBag className="text-lg md:text-2xl" /></button>
+                    <button><PiSignIn className="text-lg md:text-2xl" /></button>
+                    <button><PiUserCircle className="text-lg md:text-2xl" /></button>
+                    <button><PiSignOut className="text-lg md:text-2xl" /></button>
                 </div>
             </div>
             <br /><br />
