@@ -1,11 +1,33 @@
 import { PiHeart, PiListBold, PiShoppingBag, PiSignIn, PiSignOut, PiUserCircle } from "react-icons/pi";
 import logo from "../../assets/toycorner-logo.png";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from '../../providers/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
 
+    const { user, logout } = useContext(AuthContext);
+
+    const notify = () => toast.position("Wow so easy !");
+
+    const logoutHandler = () => {
+        logout()
+            .then(result => {
+                console.log(result);
+                toast.success("Success Notification !", {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <div>
+            <ToastContainer />
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <details className="dropdown">
@@ -46,11 +68,21 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end [&>*]:ml-1 hover:[&>*]:text-red-600">
-                    <button><PiHeart className="text-lg md:text-2xl" /></button>
-                    <button><PiShoppingBag className="text-lg md:text-2xl" /></button>
-                    <button><PiSignIn className="text-lg md:text-2xl" /></button>
-                    <button><PiUserCircle className="text-lg md:text-2xl" /></button>
-                    <button><PiSignOut className="text-lg md:text-2xl" /></button>
+                    <button className="relative mr-1 tooltip" data-tip="Wishlist"><PiHeart className="text-lg md:text-2xl" />
+                        <span className="absolute bottom-0 p-1 badge badge-primary badge-sm">0</span>
+                    </button>
+                    <button className="mr-5 tooltip" data-tip="Cart"><PiShoppingBag className="text-lg md:text-2xl" />
+                        <span className="absolute bottom-0 p-1 badge badge-primary badge-sm">0</span>
+                    </button>
+                    {(user) ?
+                        <>
+                            <button className="tooltip" data-tip="Profile"><PiUserCircle className="text-lg md:text-2xl" /></button>
+                            <button onClick={logoutHandler} className="tooltip" data-tip="Logout"><PiSignOut className="text-lg md:text-2xl" /></button>
+                        </> :
+                        <>
+                            <button className="tooltip" data-tip="Login"><PiSignIn className="text-lg md:text-2xl" /></button>
+                        </>}
+                    <button onClick={notify}>Notify !</button>
                 </div>
             </div>
             <br /><br />
