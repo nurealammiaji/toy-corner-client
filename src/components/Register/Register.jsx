@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PiGoogleLogoBold } from "react-icons/pi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
 
@@ -22,10 +23,16 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
-        emailRegister(email, password)
+        if (password === confirmPassword) {
+            emailRegister(email, password)
             .then(result => {
                 console.log(result);
-                toast.success("Registered in Successfully !!", {
+                const currentUser = result.user;
+                updateProfile(currentUser, {
+                    displayName: name,
+                    photoURL: photoURL
+                })
+                toast.success("Registered Successfully !!", {
                     position: toast.POSITION.TOP_CENTER
                 });
                 navigate(destination, { replace: true });
@@ -36,13 +43,17 @@ const Register = () => {
                     position: toast.POSITION.TOP_CENTER
                 });
             })
+        }
+        else {
+            return;
+        }
     }
 
     const googleLoginHandler = () => {
         googleLogin()
             .then(result => {
                 console.log(result);
-                toast.success("Registered in Successfully !!", {
+                toast.success("Registered Successfully !!", {
                     position: toast.POSITION.TOP_CENTER
                 });
                 navigate(destination, { replace: true });
