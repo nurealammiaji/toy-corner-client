@@ -26,7 +26,7 @@ const Navbar = () => {
     return (
         <div>
             <ToastContainer />
-            <div className="navbar bg-base-100">
+            <div className="bg-violet-100 shadow navbar">
                 <div className="navbar-start">
                     <details className="dropdown">
                         <summary tabIndex={0} className="btn btn-ghost lg:hidden">
