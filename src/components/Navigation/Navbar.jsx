@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from '../../providers/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Drawer from "./Drawer";
 
 const Navbar = () => {
 
@@ -14,7 +15,7 @@ const Navbar = () => {
         logout()
             .then(result => {
                 console.log(result);
-                toast.success("Logout Successfully !!", {
+                toast.success("Logout Successful !!", {
                     position: toast.POSITION.TOP_CENTER
                 });
             })
@@ -27,7 +28,7 @@ const Navbar = () => {
         <div>
             <ToastContainer />
             {/* Navbar */}
-            <div className="bg-violet-100 shadow navbar">
+            <div className="shadow bg-violet-100 navbar">
                 <div className="navbar-start">
                     <details className="dropdown">
                         <summary tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -70,11 +71,11 @@ const Navbar = () => {
                     <button className="relative mr-1 tooltip" data-tip="Wishlist"><PiHeart className="text-lg md:text-2xl" />
                         <span className="absolute bottom-0 p-1 badge badge-primary badge-sm">0</span>
                     </button>
-                    {/* Drawer Button */}
-                    <div className="drawer-content mr-5">
-                        <label htmlFor="my-drawer-4" className="drawer-button relative">
+                    {/* Cart Drawer Button */}
+                    <div className="mr-5 drawer-content">
+                        <label htmlFor="cart-drawer" className="relative drawer-button">
                             <PiShoppingBag className="text-lg md:text-2xl" />
-                            <span className="absolute top-7 p-1 badge badge-primary badge-sm">0</span>
+                            <span className="absolute p-1 top-7 badge badge-primary badge-sm">0</span>
                         </label>
                     </div>
                     {(user) ?
@@ -87,18 +88,8 @@ const Navbar = () => {
                         </>}
                 </div>
             </div>
-            {/* Drawer */}
-            <div className="drawer drawer-end">
-                <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-side">
-                    <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-                        {/* Sidebar content here */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
-                    </ul>
-                </div>
-            </div>
+            {/* Cart Drawer */}
+            <Drawer></Drawer>
             <br /><br />
         </div>
     );
