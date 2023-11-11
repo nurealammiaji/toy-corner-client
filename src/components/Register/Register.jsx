@@ -115,7 +115,7 @@ const Register = () => {
                             <button type="submit" className="btn btn-primary">Register</button>
                         </div>
                         <p className="divider">or</p>
-                        <div>
+                        <div className="text-center">
                             <button onClick={googleLoginHandler} className="tooltip" data-tip="Register with Google"><PiGoogleLogoBold className="text-3xl" /></button>
                         </div>
                     </form>

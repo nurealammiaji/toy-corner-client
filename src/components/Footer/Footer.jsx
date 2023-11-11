@@ -1,4 +1,6 @@
 import logo from "../../assets/toycorner-logo.png";
+import CartDrawer from "../Navigation/CartDrawer";
+import WishlistDrawer from "../Navigation/WishlistDrawer";
 
 const Footer = () => {
     return (
@@ -8,7 +10,7 @@ const Footer = () => {
                 <aside>
                     <img className="md:h-[70px]" src={logo} alt="Toy Corner Logo" />
                     <p className="text-xl">Toy Corner (Pvt.) Ltd.</p>
-                    <p>Providing reliable tech since 2000</p>
+                    <p>Providing the joy of toys since 2000</p>
                 </aside>
                 <nav>
                     <header className="footer-title">Social</header>
@@ -19,6 +21,11 @@ const Footer = () => {
                     </div>
                 </nav>
             </footer>
+            {/* Drawer */}
+            <div className="">
+                <WishlistDrawer></WishlistDrawer>
+                <CartDrawer></CartDrawer>
+            </div>
         </div>
     );
 };

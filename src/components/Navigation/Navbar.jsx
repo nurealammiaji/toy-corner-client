@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { AuthContext } from '../../providers/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Drawer from "./Drawer";
 
 const Navbar = () => {
 
@@ -53,7 +52,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="hidden navbar-center lg:flex">
-                    <ul className="px-1 menu menu-horizontal">
+                    <ul className="px-1 menu menu-horizontal z-[1]">
                         <li><Link to="/">Home</Link></li>
                         <li tabIndex={0}>
                             <details>
@@ -68,14 +67,17 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end [&>*]:ml-1 hover:[&>*]:text-red-600">
-                    <button className="relative mr-1 tooltip" data-tip="Wishlist"><PiHeart className="text-lg md:text-2xl" />
-                        <span className="absolute bottom-0 p-1 badge badge-primary badge-sm">0</span>
-                    </button>
                     {/* Cart Drawer Button */}
+                    <div className="mr-1 drawer-content">
+                        <label htmlFor="wishlist-drawer" className="relative drawer-button">
+                            <PiHeart className="text-lg md:text-2xl" />
+                            <span className="absolute p-1 left-3 top-7 badge badge-primary badge-sm">0</span>
+                        </label>
+                    </div>
                     <div className="mr-5 drawer-content">
                         <label htmlFor="cart-drawer" className="relative drawer-button">
                             <PiShoppingBag className="text-lg md:text-2xl" />
-                            <span className="absolute p-1 top-7 badge badge-primary badge-sm">0</span>
+                            <span className="absolute p-1 left-3 top-7 badge badge-primary badge-sm">0</span>
                         </label>
                     </div>
                     {(user) ?
@@ -88,8 +90,6 @@ const Navbar = () => {
                         </>}
                 </div>
             </div>
-            {/* Cart Drawer */}
-            <Drawer></Drawer>
             <br /><br />
         </div>
     );

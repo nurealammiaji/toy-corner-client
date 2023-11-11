@@ -85,7 +85,7 @@ const Login = () => {
                             <button type="submit" className="btn btn-primary">Login</button>
                         </div>
                         <p className="divider">or</p>
-                        <div>
+                        <div className="text-center">
                             <button onClick={googleLoginHandler} className="tooltip" data-tip="Google Sign In"><PiGoogleLogoBold className="text-3xl" /></button>
                         </div>
                     </form>
