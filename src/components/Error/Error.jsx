@@ -8,7 +8,7 @@ const Error = () => {
     console.log(error);
 
     return (
-        <div>
+        <div className="text-center">
             <img className="mx-auto md:h-[300px]" src={image} alt="" />
             <div className="flex [&>*]:mx-2 justify-center items-center">
                 <h3 className="text-2xl font-bold">{error.status}</h3>

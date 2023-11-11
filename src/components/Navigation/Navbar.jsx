@@ -26,8 +26,7 @@ const Navbar = () => {
     return (
         <div>
             <ToastContainer />
-            {/* Navbar */}
-            <div className="shadow bg-violet-100 navbar">
+            <div className="shadow navbar">
                 <div className="navbar-start">
                     <details className="dropdown">
                         <summary tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -67,7 +66,6 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end [&>*]:ml-1 hover:[&>*]:text-red-600">
-                    {/* Cart Drawer Button */}
                     <div className="mr-1 drawer-content">
                         <label htmlFor="wishlist-drawer" className="relative drawer-button">
                             <PiHeart className="text-lg md:text-2xl" />

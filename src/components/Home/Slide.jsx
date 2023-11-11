@@ -6,7 +6,7 @@ const Slide = ({ product }) => {
 
     return (
         <div className="m-5">
-            <div className="shadow-xl card lg:card-side bg-base-100">
+            <div className="shadow-lg card lg:card-side bg-base-100">
                 <figure><img src={image} className="md:h-[300px] w-full" alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="text-2xl card-title">{name}</h2>
