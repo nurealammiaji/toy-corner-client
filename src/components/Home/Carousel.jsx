@@ -2,8 +2,17 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slide from "./Slide";
+import { useEffect, useState } from "react";
 
-const Carousel = ({ products }) => {
+const Carousel = () => {
+
+    const [products, setProducts] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/products?limit=10')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
 
     const settings = {
         dots: true,
