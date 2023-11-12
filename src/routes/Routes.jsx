@@ -21,6 +21,10 @@ const Routes = createBrowserRouter([
                 element: <Home></Home>
             },
             {
+                path: "toys",
+                element: <Toys></Toys>
+            },
+            {
                 path: "blog",
                 element: <Blog></Blog>
             },
@@ -40,10 +44,6 @@ const Routes = createBrowserRouter([
                 path: "profile",
                 element: <Private><Profile></Profile></Private>
             },
-            {
-                path: "toys",
-                element: <Toys></Toys>
-            }
         ]
     }
 ])

@@ -35,16 +35,19 @@ const Navbar = () => {
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="/toys">All Toys</Link></li>
-                            <li tabIndex={0}>
-                                <details>
-                                    <summary>Category</summary>
-                                    <ul className="p-2">
-                                        <li><a>Submenu 1</a></li>
-                                        <li><a>Submenu 2</a></li>
-                                    </ul>
-                                </details>
-                            </li>
-                            <li><Link to="">My Toys</Link></li>
+                            <li><Link to="/blog">Blog</Link></li>
+                            {
+                                (user) &&
+                                <li tabIndex={0}>
+                                    <details>
+                                        <summary>My Area</summary>
+                                        <ul className="p-2">
+                                            <li><Link>Add Toy</Link></li>
+                                            <li><Link>My Toys</Link></li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            }
                         </ul>
                     </details>
                     <Link to="/">
@@ -55,32 +58,32 @@ const Navbar = () => {
                     <ul className="px-1 menu menu-horizontal z-[1]">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/toys">All Toys</Link></li>
-                        <li tabIndex={0}>
-                            <details>
-                                <summary>Category</summary>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
-                            </details>
-                        </li>
+                        <li><Link to="/blog">Blog</Link></li>
                         {
                             (user) &&
-                            <li><Link to="">My Toys</Link></li>
+                            <li tabIndex={0}>
+                                <details>
+                                    <summary>My Area</summary>
+                                    <ul className="p-2">
+                                        <li><Link>Add Toy</Link></li>
+                                        <li><Link>My Toys</Link></li>
+                                    </ul>
+                                </details>
+                            </li>
                         }
                     </ul>
                 </div>
                 <div className="navbar-end [&>*]:ml-1 hover:[&>*]:text-red-600">
-                    <div className="mr-1 drawer-content">
+                    <div className="mr-1 drawer-content tooltip" data-tip="Wishlist">
                         <label htmlFor="wishlist-drawer" className="relative drawer-button">
-                            <PiHeart className="text-lg md:text-2xl" />
-                            <span className="absolute p-1 left-3 top-7 badge badge-primary badge-sm">0</span>
+                            <PiHeart className="text-xl md:text-2xl" />
+                            <span className="absolute left-0 p-1 top-7 badge badge-primary badge-sm">0</span>
                         </label>
                     </div>
-                    <div className="mr-5 drawer-content">
+                    <div className="mr-3 md:mr-5 drawer-content tooltip" data-tip="Cart">
                         <label htmlFor="cart-drawer" className="relative drawer-button">
-                            <PiShoppingBag className="text-lg md:text-2xl" />
-                            <span className="absolute p-1 left-3 top-7 badge badge-primary badge-sm">0</span>
+                            <PiShoppingBag className="text-xl md:text-2xl" />
+                            <span className="absolute left-0 p-1 top-7 badge badge-primary badge-sm">0</span>
                         </label>
                     </div>
                     {(user) ?
