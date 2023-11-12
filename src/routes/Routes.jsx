@@ -8,6 +8,7 @@ import Forgot from "../components/Forgot/Forgot";
 import Blog from "../components/Blog/Blog";
 import Profile from '../components/Profile/Profile';
 import Private from "./Private";
+import Toys from '../components/Toys/Toys';
 
 const Routes = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const Routes = createBrowserRouter([
             {
                 path: "profile",
                 element: <Private><Profile></Profile></Private>
+            },
+            {
+                path: "toys",
+                element: <Toys></Toys>
             }
         ]
     }

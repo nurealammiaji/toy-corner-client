@@ -34,6 +34,7 @@ const Navbar = () => {
                         </summary>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/">Home</Link></li>
+                            <li><Link to="/toys">All Toys</Link></li>
                             <li tabIndex={0}>
                                 <details>
                                     <summary>Category</summary>
@@ -43,7 +44,7 @@ const Navbar = () => {
                                     </ul>
                                 </details>
                             </li>
-                            <li><a>Item 3</a></li>
+                            <li><Link to="">My Toys</Link></li>
                         </ul>
                     </details>
                     <Link to="/">
@@ -53,6 +54,7 @@ const Navbar = () => {
                 <div className="hidden navbar-center lg:flex">
                     <ul className="px-1 menu menu-horizontal z-[1]">
                         <li><Link to="/">Home</Link></li>
+                        <li><Link to="/toys">All Toys</Link></li>
                         <li tabIndex={0}>
                             <details>
                                 <summary>Category</summary>
@@ -62,7 +64,10 @@ const Navbar = () => {
                                 </ul>
                             </details>
                         </li>
-                        <li><a>Item 3</a></li>
+                        {
+                            (user) &&
+                            <li><Link to="">My Toys</Link></li>
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end [&>*]:ml-1 hover:[&>*]:text-red-600">
@@ -80,7 +85,13 @@ const Navbar = () => {
                     </div>
                     {(user) ?
                         <>
-                            <button className="tooltip" data-tip="Profile"><Link to="/profile"><PiUserCircle className="text-lg md:text-2xl" /></Link></button>
+                            <div className="mr-1 avatar tooltip" data-tip={`${user.displayName}`}>
+                                <div className="w-4 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    <Link to="/profile">
+                                        <img src={user.photoURL} />
+                                    </Link>
+                                </div>
+                            </div>
                             <button onClick={logoutHandler} className="tooltip" data-tip="Logout"><PiSignOut className="text-lg md:text-2xl" /></button>
                         </> :
                         <>
