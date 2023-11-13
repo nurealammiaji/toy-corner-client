@@ -1,4 +1,4 @@
-
+import { PiEye, PiHeart, PiShoppingCart } from "react-icons/pi";
 
 const Toy = ({ toy }) => {
 
@@ -12,8 +12,12 @@ const Toy = ({ toy }) => {
                     <h2 className="card-title">{name}</h2>
                     <p>{description}</p>
                     <br />
-                    <div className="justify-end card-actions">
-                        <button className="text-sm btn btn-primary btn-sm">Add to Cart</button>
+                    <div className="justify-center card-actions">
+                        <div className="join">
+                            <button className="btn hover:btn-ghost btn-info join-item tooltip" data-tip="View Details"><PiEye className="text-xl" /></button>
+                            <button className="btn hover:btn-ghost btn-error join-item tooltip" data-tip="Add to Wishlist"><PiHeart className="text-xl" /></button>
+                            <button className="btn btn-success hover:btn-ghost join-item tooltip" data-tip="Add to Cart"><PiShoppingCart className="text-xl" /></button>
+                        </div>
                     </div>
                 </div>
             </div>

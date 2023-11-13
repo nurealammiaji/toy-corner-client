@@ -1,4 +1,4 @@
-import { PiHeart, PiListBold, PiShoppingBag, PiSignIn, PiSignOut, PiUserCircle } from "react-icons/pi";
+import { PiHeart, PiListBold, PiShoppingBag, PiShoppingCart, PiShoppingCartBold, PiSignIn, PiSignOut, PiUserCircle } from "react-icons/pi";
 import logo from "../../assets/toycorner-logo.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -82,7 +82,7 @@ const Navbar = () => {
                     </div>
                     <div className="mr-3 md:mr-5 drawer-content tooltip" data-tip="Cart">
                         <label htmlFor="cart-drawer" className="relative drawer-button">
-                            <PiShoppingBag className="text-xl md:text-2xl" />
+                            <PiShoppingCart className="text-xl md:text-2xl" />
                             <span className="absolute left-0 p-1 top-7 badge badge-primary badge-sm">0</span>
                         </label>
                     </div>
