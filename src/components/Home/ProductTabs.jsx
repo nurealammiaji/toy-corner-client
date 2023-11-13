@@ -7,25 +7,31 @@ const ProductTabs = () => {
 
     const [tabIndex, setTabIndex] = useState(0);
     const [products, setProducts] = useState(null);
+    const [category, setCategory] = useState("Plastic");
 
     useEffect(() => {
-        fetch('')
+        fetch(`http://localhost:5000/products/categories/${category}`)
             .then(res => res.json())
             .then(data => setProducts(data))
-    })
+    }, [category])
 
     return (
         <div>
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
-                    <Tab>Title 1</Tab>
-                    <Tab>Title 2</Tab>
-                    <Tab>Title 3</Tab>
+                    <Tab onClick={() => setCategory("Plastic")}>Plastic</Tab>
+                    <Tab onClick={() => setCategory("Metal")}>Metal</Tab>
+                    <Tab onClick={() => setCategory("Alloy")}>Alloy</Tab>
+                    <Tab onClick={() => setCategory("Composite")}>Composite</Tab>
                 </TabList>
                 <TabPanel>
                     {
                         (products) ?
-                            products.map(product => <TabData key={product._id} product={product}></TabData>) :
+                            <div className='grid gap-5 md:grid-cols-3'>
+                                {
+                                    products.map(product => <TabData key={product._id} product={product}></TabData>)
+                                }
+                            </div> :
                             <div className="text-center">
                                 <button className="text-red-600 btn btn-ghost">
                                     <span className="loading loading-spinner"></span>
@@ -35,10 +41,52 @@ const ProductTabs = () => {
                     }
                 </TabPanel>
                 <TabPanel>
-                    Bla Bla Bla
+                    {
+                        (products) ?
+                            <div className='grid gap-5 md:grid-cols-3'>
+                                {
+                                    products.map(product => <TabData key={product._id} product={product}></TabData>)
+                                }
+                            </div> :
+                            <div className="text-center">
+                                <button className="text-red-600 btn btn-ghost">
+                                    <span className="loading loading-spinner"></span>
+                                    Loading
+                                </button>
+                            </div>
+                    }
                 </TabPanel>
                 <TabPanel>
-                    Bla Bla Bla
+                    {
+                        (products) ?
+                            <div className='grid gap-5 md:grid-cols-3'>
+                                {
+                                    products.map(product => <TabData key={product._id} product={product}></TabData>)
+                                }
+                            </div> :
+                            <div className="text-center">
+                                <button className="text-red-600 btn btn-ghost">
+                                    <span className="loading loading-spinner"></span>
+                                    Loading
+                                </button>
+                            </div>
+                    }
+                </TabPanel>
+                <TabPanel>
+                    {
+                        (products) ?
+                            <div className='grid gap-5 md:grid-cols-3'>
+                                {
+                                    products.map(product => <TabData key={product._id} product={product}></TabData>)
+                                }
+                            </div> :
+                            <div className="text-center">
+                                <button className="text-red-600 btn btn-ghost">
+                                    <span className="loading loading-spinner"></span>
+                                    Loading
+                                </button>
+                            </div>
+                    }
                 </TabPanel>
             </Tabs>
         </div>

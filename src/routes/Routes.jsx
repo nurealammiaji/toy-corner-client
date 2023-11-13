@@ -9,6 +9,7 @@ import Blog from "../components/Blog/Blog";
 import Profile from '../components/Profile/Profile';
 import Private from "./Private";
 import Toys from '../components/Toys/Toys';
+import ToyDetails from "../components/Toys/ToyDetails";
 
 const Routes = createBrowserRouter([
     {
@@ -24,6 +25,11 @@ const Routes = createBrowserRouter([
                 path: "toys",
                 element: <Toys></Toys>,
                 loader: () => fetch('http://localhost:5000/products')
+            },
+            {
+                path: "toys/:id",
+                element: <ToyDetails></ToyDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
                 path: "blog",
