@@ -1,10 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import Toy from './Toy';
+import { Hourglass } from "react-loader-spinner";
 
 const Toys = () => {
 
     const toys = useLoaderData();
-    console.log(toys);
 
     return (
         <div>
@@ -16,12 +16,19 @@ const Toys = () => {
                                 toys.map(toy => <Toy key={toy._id} toy={toy}></Toy>)
                             }
                         </div> :
-                        <div className="text-center">
-                            <button className="text-red-600 btn btn-ghost">
-                                <span className="loading loading-spinner"></span>
-                                Loading
-                            </button>
-                        </div>
+                        <>
+                            <div className="flex items-center justify-center">
+                                <Hourglass
+                                    visible={true}
+                                    height="20"
+                                    width="20"
+                                    ariaLabel="hourglass-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    colors={['navy', 'crimson']}
+                                /><p className='ml-3 text-lg font-medium text-red-700'>Loading ...</p>
+                            </div>
+                        </>
                 }
             </div>
         </div>

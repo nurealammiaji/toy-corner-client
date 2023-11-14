@@ -3,8 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slide from "./Slide";
 import { useEffect, useState } from "react";
+import { Hourglass } from "react-loader-spinner";
 
-const Carousel = () => {
+const FeaturedProducts = () => {
 
     const [products, setProducts] = useState(null);
 
@@ -58,20 +59,33 @@ const Carousel = () => {
 
     return (
         <div>
+            <br />
+            <div className='text-center'>
+                <h2 className='text-3xl font-bold'>Featured Products</h2>
+                <p className='mt-3 text-lg'>Choose your product from featured products</p>
+            </div>
+            <br /><br />
             <Slider {...settings}>
                 {
                     (products) ?
                         products.map(product => <Slide key={product._id} product={product}></Slide>) :
-                        <div className="text-center">
-                            <button className="text-red-600 btn btn-ghost">
-                                <span className="loading loading-spinner"></span>
-                                Loading
-                            </button>
-                        </div>
+                        <>
+                            <div className="flex items-center justify-center">
+                                <Hourglass
+                                    visible={true}
+                                    height="20"
+                                    width="20"
+                                    ariaLabel="hourglass-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    colors={['navy', 'crimson']}
+                                /><p className='ml-3 text-lg font-medium text-red-700'>Loading ...</p>
+                            </div>
+                        </>
                 }
             </Slider>
         </div>
     );
 };
 
-export default Carousel;
+export default FeaturedProducts;
