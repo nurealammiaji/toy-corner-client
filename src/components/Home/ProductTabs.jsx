@@ -47,7 +47,7 @@ const ProductTabs = () => {
         <div>
             <br />
             <div className='text-center'>
-                <h2 className='text-3xl font-bold'>Shop by Category</h2>
+                <h2 className='text-3xl font-bold text-primary'>Shop by Category</h2>
                 <p className='mt-3 text-lg'>Choose your product by your desire categories</p>
             </div>
             <br /><br />
@@ -60,6 +60,7 @@ const ProductTabs = () => {
                     <Tab onClick={() => setCategory("Composite")}><h5 className='font-semibold'>Composite</h5></Tab>
                     </div>
                 </TabList>
+                <br />
                 {
                     tabPanel
                 }

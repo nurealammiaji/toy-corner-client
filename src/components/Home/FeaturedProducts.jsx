@@ -61,7 +61,7 @@ const FeaturedProducts = () => {
         <div>
             <br />
             <div className='text-center'>
-                <h2 className='text-3xl font-bold'>Featured Products</h2>
+                <h2 className='text-3xl font-bold text-primary'>Featured Products</h2>
                 <p className='mt-3 text-lg'>Choose your product from featured products</p>
             </div>
             <br /><br />
