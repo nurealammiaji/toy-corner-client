@@ -54,10 +54,10 @@ const ProductTabs = () => {
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <div className='text-center'>
-                    <Tab onClick={() => setCategory("Plastic")}><h5 className='font-semibold'>Plastic</h5></Tab>
-                    <Tab onClick={() => setCategory("Metal")}><h5 className='font-semibold'>Metal</h5></Tab>
-                    <Tab onClick={() => setCategory("Alloy")}><h5 className='font-semibold'>Alloy</h5></Tab>
-                    <Tab onClick={() => setCategory("Composite")}><h5 className='font-semibold'>Composite</h5></Tab>
+                        <Tab onClick={() => setCategory("Plastic")}><h5 className='font-semibold'>Plastic</h5></Tab>
+                        <Tab onClick={() => setCategory("Metal")}><h5 className='font-semibold'>Metal</h5></Tab>
+                        <Tab onClick={() => setCategory("Alloy")}><h5 className='font-semibold'>Alloy</h5></Tab>
+                        <Tab onClick={() => setCategory("Composite")}><h5 className='font-semibold'>Composite</h5></Tab>
                     </div>
                 </TabList>
                 <br />

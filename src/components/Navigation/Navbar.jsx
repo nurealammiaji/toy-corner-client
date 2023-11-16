@@ -1,4 +1,4 @@
-import { PiHeart, PiListBold, PiShoppingBag, PiShoppingCart, PiShoppingCartBold, PiSignIn, PiSignOut, PiUserCircle } from "react-icons/pi";
+import { PiHeart, PiListBold, PiShoppingCart, PiSignIn, PiSignOut } from "react-icons/pi";
 import logo from "../../assets/toycorner-logo.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -42,7 +42,7 @@ const Navbar = () => {
                                     <details>
                                         <summary>My Area</summary>
                                         <ul className="p-2">
-                                            <li><Link>Add Toy</Link></li>
+                                            <li><Link>Add Toys</Link></li>
                                             <li><Link>My Toys</Link></li>
                                         </ul>
                                     </details>
@@ -65,7 +65,7 @@ const Navbar = () => {
                                 <details>
                                     <summary>My Area</summary>
                                     <ul className="p-2">
-                                        <li><Link>Add Toy</Link></li>
+                                        <li><Link>Add Toys</Link></li>
                                         <li><Link>My Toys</Link></li>
                                     </ul>
                                 </details>

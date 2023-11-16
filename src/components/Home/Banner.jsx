@@ -3,7 +3,7 @@ import kidsFun from "../../assets/kids-fun.png";
 const Banner = () => {
     return (
         <div>
-            <div className="min-h-screen hero">
+            <div className="hero">
                 <div className="flex-col hero-content lg:flex-row-reverse">
                     <img src={kidsFun} className="w-full" />
                     <div>

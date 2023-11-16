@@ -1,9 +1,10 @@
 import { PiEye, PiHeart, PiShoppingCart } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import { Rating } from '@smastrom/react-rating';
 
 const Toy = ({ toy }) => {
 
-    const { _id, name, manufacturer, price, image, description } = toy;
+    const { _id, name, manufacturer, price, image, description, ratings } = toy;
 
     return (
         <div>
@@ -11,7 +12,9 @@ const Toy = ({ toy }) => {
                 <figure><img src={image} className="h-[250px] w-full" alt="Toy" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
+                    <p className="font-medium">Price: {price.amount} {price.currency}</p>
                     <p>{description}</p>
+                    <p>Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></p>
                     <br />
                     <div className="justify-center card-actions">
                         <div className="join">
