@@ -1,4 +1,4 @@
-import { useLoaderData} from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { PiHeart, PiHeartFill, PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import { Rating } from '@smastrom/react-rating';
 
@@ -9,6 +9,10 @@ const ToyDetails = () => {
 
     return (
         <div>
+            <div className='text-center'>
+                <h2 className='text-3xl font-bold text-primary divider w-6/12 mx-auto'>Toy Details</h2>
+            </div>
+            <br /><br />
             <div className="w-full mx-auto shadow-xl md:w-8/12 card card-compact bg-base-100">
                 <figure><img src={image} className="w-full md:w-6/12" alt="Toy" /></figure>
                 <div className="card-body">

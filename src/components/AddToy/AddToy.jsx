@@ -38,14 +38,21 @@ const AddToy = () => {
             },
             image: image
         }
-        console.log(toy);
+
+        // Adding Toy to the database
+        fetch('http://localhost:5000/products', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(toy)
+        })
     }
 
     return (
         <div>
             <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary'>Add Toys</h2>
-                <p className='mt-3 text-lg'>Add your toys here for selling</p>
+                <h2 className='text-3xl font-bold text-primary divider w-6/12 mx-auto'>Add Toys</h2>
             </div>
             <br /><br />
             <form onSubmit={handleAddToy} className="w-9/12 p-10 mx-auto bg-base-200">
@@ -115,7 +122,7 @@ const AddToy = () => {
                     <label className="label">
                         <span className="label-text">Image URL</span>
                     </label>
-                    <input type="url" name="image" placeholder="Type photo url here" className="input input-bordered" />
+                    <input type="url" name="image" placeholder="Type image url here" className="input input-bordered" />
                 </div>
                 <div className="w-full mt-5 form-control">
                     <label className="label">

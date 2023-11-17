@@ -5,7 +5,6 @@ import { Rating } from '@smastrom/react-rating';
 const Slide = ({ product }) => {
 
     const { _id, name, manufacturer, price, image, description, ratings } = product;
-    console.log(product);
 
     return (
         <div className="m-5">

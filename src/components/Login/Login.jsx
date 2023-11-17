@@ -10,7 +10,6 @@ const Login = () => {
     const { emailLogin, googleLogin } = useContext(AuthContext);
 
     const location = useLocation();
-    console.log(location);
     const navigate = useNavigate();
     const destination = location?.state?.from?.pathname || "/";
 

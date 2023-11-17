@@ -8,14 +8,36 @@ const Toys = () => {
 
     return (
         <div>
+            <div className='text-center'>
+                <h2 className='text-3xl font-bold text-primary divider w-6/12 mx-auto'>All Toys</h2>
+            </div>
+            <br /><br />
             <div>
                 {
                     (toys) ?
-                        <div className="grid gap-5 md:grid-cols-3">
-                            {
-                                toys.map(toy => <Toy key={toy._id} toy={toy}></Toy>)
-                            }
-                        </div> :
+                        <>
+                            <div className="overflow-x-auto">
+                                <table className="table">
+                                    {/* head */}
+                                    <thead>
+                                        <tr>
+                                            <th>Serial</th>
+                                            <th>Image</th>
+                                            <th>Name / Price</th>
+                                            <th>Description / Ratings</th>
+                                            <th>Manufacturer / Seller</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {/* row */}
+                                        {
+                                            toys.map((toy, index) => <Toy key={toy._id} serial={index + 1} toy={toy}></Toy>)
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </> :
                         <>
                             <div className="flex items-center justify-center">
                                 <Hourglass

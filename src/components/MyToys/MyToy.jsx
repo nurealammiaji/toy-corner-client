@@ -2,7 +2,7 @@ import { PiEye } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { Rating } from '@smastrom/react-rating';
 
-const Toy = ({ toy, serial }) => {
+const MyToy = ({ toy, serial }) => {
 
     const { _id, name, manufacturer, price, image, description, ratings } = toy;
 
@@ -37,4 +37,4 @@ const Toy = ({ toy, serial }) => {
     );
 };
 
-export default Toy;
+export default MyToy;

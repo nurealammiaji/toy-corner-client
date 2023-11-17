@@ -21,7 +21,6 @@ const Profile = () => {
         const name = form.name.value;
         const photoURL = form.photoURL.value;
         const email = form.email.value;
-        console.log(name, photoURL, email);
         updateProfile(user, {
             displayName: name,
             photoURL: photoURL,
