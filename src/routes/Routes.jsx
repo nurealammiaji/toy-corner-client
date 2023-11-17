@@ -10,6 +10,7 @@ import Profile from '../components/Profile/Profile';
 import Private from "./Private";
 import Toys from '../components/Toys/Toys';
 import ToyDetails from "../components/Toys/ToyDetails";
+import AddToy from "../components/AddToy/AddToy";
 
 const Routes = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const Routes = createBrowserRouter([
                 path: "toys/:id",
                 element: <Private><ToyDetails></ToyDetails></Private>,
                 loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+            },
+            {
+                path: "add-toys",
+                element: <Private><AddToy></AddToy></Private>
             },
             {
                 path: "blog",

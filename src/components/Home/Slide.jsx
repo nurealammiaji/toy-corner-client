@@ -19,8 +19,8 @@ const Slide = ({ product }) => {
                         <p>{description}</p>
                         <p className="font-medium">Price: {price.amount} {price.currency}</p>
                         <p>Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></p>
-
                     </div>
+                    <br /><br />
                     <div className="justify-end card-actions">
                         <div className="join">
                             <Link to={`/toys/${_id}`}>

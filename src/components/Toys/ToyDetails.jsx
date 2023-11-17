@@ -1,24 +1,29 @@
 import { useLoaderData} from "react-router-dom";
-import { PiHeartFill, PiShoppingCartFill } from "react-icons/pi";
+import { PiHeart, PiHeartFill, PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
+import { Rating } from '@smastrom/react-rating';
 
 const ToyDetails = () => {
 
     const toy = useLoaderData();
-    const { _id, name, manufacturer, price, image, description } = toy;
+    const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, material } = toy;
 
     return (
         <div>
             <div className="w-full mx-auto shadow-xl md:w-8/12 card card-compact bg-base-100">
-                <figure><img src={image} className="w-full" alt="Toy" /></figure>
+                <figure><img src={image} className="w-full md:w-6/12" alt="Toy" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <br />
-                    <h4>Price: {price.amount} {price.currency}</h4>
-                    <br />
-                    <p>Manufacturer: {manufacturer}</p>
-                    <p>{description}</p>
-                    <br />
-                    <div className="justify-center card-actions">
+                    <h4><span className="font-medium">Price:</span> {price.amount} {price.currency}</h4>
+                    <p><span className="font-medium">Availability:</span> {availability}</p>
+                    <p><span className="font-medium">Color:</span> {color}</p>
+                    <p><span className="font-medium">Material:</span> {material}</p>
+                    <p><span className="font-medium">Age Group:</span> {ageRange}</p>
+                    <p><span className="font-medium">Manufacturer:</span>  {manufacturer}</p>
+                    <p><span className="font-medium">Description:</span> {description}</p>
+                    <p><span className="font-medium">Ratings:</span> <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></p>
+                    <br /><br />
+                    <div className="justify-center hidden mx-auto card-actions md:block">
                         <div className="join">
                             <button className="btn hover:btn-ghost btn-error join-item tooltip" data-tip="Add to Wishlist">
                                 <div className="flex items-center justify-between">
@@ -31,6 +36,12 @@ const ToyDetails = () => {
                                     <p><PiShoppingCartFill className="ml-2 text-xl" /></p>
                                 </div>
                             </button>
+                        </div>
+                    </div>
+                    <div className="justify-center block mx-auto card-actions md:hidden">
+                        <div className="join">
+                            <button className="btn hover:btn-ghost btn-error join-item tooltip" data-tip="Add to Wishlist"><PiHeart className="text-xl" /></button>
+                            <button className="btn btn-success hover:btn-ghost join-item tooltip" data-tip="Add to Cart"><PiShoppingCart className="text-xl" /></button>
                         </div>
                     </div>
                 </div>

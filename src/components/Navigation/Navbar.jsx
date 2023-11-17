@@ -42,8 +42,8 @@ const Navbar = () => {
                                     <details>
                                         <summary>My Area</summary>
                                         <ul className="p-2">
-                                            <li><Link>Add Toys</Link></li>
-                                            <li><Link>My Toys</Link></li>
+                                            <li><Link to="add-toys">Add Toys</Link></li>
+                                            <li><Link to="my-toys">My Toys</Link></li>
                                         </ul>
                                     </details>
                                 </li>
@@ -65,8 +65,8 @@ const Navbar = () => {
                                 <details>
                                     <summary>My Area</summary>
                                     <ul className="p-2">
-                                        <li><Link>Add Toys</Link></li>
-                                        <li><Link>My Toys</Link></li>
+                                        <li><Link to="add-toys">Add Toys</Link></li>
+                                        <li><Link to="my-toys">My Toys</Link></li>
                                     </ul>
                                 </details>
                             </li>

@@ -9,13 +9,13 @@ const Toy = ({ toy }) => {
     return (
         <div>
             <div className="w-full shadow-xl card card-compact bg-base-100">
-                <figure><img src={image} className="h-[250px] w-full" alt="Toy" /></figure>
+                <figure><img src={image} className="h-[300px] w-full" alt="Toy" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{name}</h2>
                     <p className="font-medium">Price: {price.amount} {price.currency}</p>
                     <p>{description}</p>
                     <p>Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></p>
-                    <br />
+                    <br /><br />
                     <div className="justify-center card-actions">
                         <div className="join">
                             <Link to={`/toys/${_id}`}>
