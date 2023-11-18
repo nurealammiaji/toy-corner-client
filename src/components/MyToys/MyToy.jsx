@@ -1,10 +1,31 @@
 import { PiEye, PiPen, PiTrash } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { Rating } from '@smastrom/react-rating';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const MyToy = ({ toy, serial }) => {
 
     const { _id, name, manufacturer, price, image, description, ratings, seller } = toy;
+
+    const handleDeleteToy = (_id) => {
+        console.log("Delete", _id);
+        fetch(`http://localhost:5000/products/seller/${_id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(result => {
+                if (result.deletedCount === 1) {
+                    Swal.fire({
+                        title: "Deleted !",
+                        text: "Toy deleted successfully",
+                        icon: "success"
+                    });
+                }
+            })
+    }
 
     return (
         <tr>
@@ -41,15 +62,15 @@ const MyToy = ({ toy, serial }) => {
                 }
             </td>
             <td>
-            <div className="card-actions">
-                        <div className="join">
-                            <Link to={`/toys/${_id}`}>
-                                <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View"><PiEye className="text-xl" /></button>
-                            </Link>
-                            <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Update"><PiPen className="text-xl" /></button>
-                            <button className="btn btn-sm hover:btn-ghost btn-error join-item tooltip" data-tip="Delete"><PiTrash className="text-xl" /></button>
-                        </div>
+                <div className="card-actions">
+                    <div className="join">
+                        <Link to={`/toys/${_id}`}>
+                            <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View"><PiEye className="text-xl" /></button>
+                        </Link>
+                        <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Update"><PiPen className="text-xl" /></button>
+                        <button onClick={() => { handleDeleteToy(_id) }} className="btn btn-sm hover:btn-ghost btn-error join-item tooltip" data-tip="Delete"><PiTrash className="text-xl" /></button>
                     </div>
+                </div>
             </td>
         </tr>
     );
