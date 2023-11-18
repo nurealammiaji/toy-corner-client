@@ -1,10 +1,17 @@
 import { useLoaderData } from "react-router-dom";
 import Toy from './Toy';
 import { Hourglass } from "react-loader-spinner";
+import { useEffect, useState } from "react";
 
 const Toys = () => {
 
-    const toys = useLoaderData();
+    const [toys, setToys] = useState(null);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/products/')
+        .then(res => res.json())
+        .then(data => setToys(data))
+    }, [])
 
     return (
         <div>
