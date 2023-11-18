@@ -4,7 +4,7 @@ import { Rating } from '@smastrom/react-rating';
 
 const Toy = ({ toy, serial }) => {
 
-    const { _id, name, manufacturer, price, image, description, ratings } = toy;
+    const { _id, name, manufacturer, price, image, description, ratings, seller } = toy;
 
     return (
         <tr>
@@ -25,9 +25,21 @@ const Toy = ({ toy, serial }) => {
             <td>
                 {description}
                 <br />
-                <span className="badge badge-ghost badge-sm">Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></span>
+                <span className="badge badge-ghost badge-sm"><span className="mr-2">Ratings:</span> <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></span>
             </td>
-            <td>{manufacturer}</td>
+            <td>
+                {manufacturer}
+                <br />
+                {
+                    (seller) ?
+                        <>
+                            <span className="badge badge-ghost badge-sm">Seller: {seller}</span>
+                        </> :
+                        <>
+                            <span className="badge badge-ghost badge-sm">Seller: None </span>
+                        </>
+                }
+            </td>
             <td>
                 <Link to={`/toys/${_id}`}>
                     <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View Details"><PiEye className="text-xl" /></button>

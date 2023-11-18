@@ -2,7 +2,6 @@ import Banner from "./Banner";
 import FeaturedProducts from "./FeaturedProducts";
 import Gallery from "./Gallery";
 import ProductTabs from "./ProductTabs";
-import ScrollToTop from "react-scroll-to-top";
 
 const Home = () => {
 
@@ -16,8 +15,6 @@ const Home = () => {
             <br /><br />
             <Gallery></Gallery>
             <br /><br />
-            {/* <div style={{ marginTop: "150vh" }} />
-            <ScrollToTop smooth /> */}
         </div>
     );
 };

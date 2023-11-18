@@ -1,6 +1,15 @@
+import { useContext } from "react";
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
+import { useNavigate } from "react-router-dom";
 
 
 const AddToy = () => {
+
+    const { user } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleAddToy = (event) => {
         event.preventDefault();
@@ -8,7 +17,7 @@ const AddToy = () => {
         const name = form.name.value;
         const price = form.price.value;
         const color = form.color.value;
-        const material = form.color.value;
+        const material = form.material.value;
         const availability = form.availability.value;
         const age = form.age.value;
         const ratings = form.ratings.value;
@@ -21,6 +30,7 @@ const AddToy = () => {
             name: name,
             manufacturer: manufacturer,
             seller: seller,
+            sellerEmail: user.email,
             material: material,
             color: color,
             ageRange: age,
@@ -47,6 +57,29 @@ const AddToy = () => {
             },
             body: JSON.stringify(toy)
         })
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    Swal.fire({
+                        title: "Added !",
+                        text: "Toy added successfully",
+                        icon: "success"
+                    });
+                    form.reset();
+                    navigate("/my-toys", { replace: true });
+                }
+                else {
+                    return;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire({
+                    title: "Failed!",
+                    text: "Toy adding unsuccessful",
+                    icon: "error"
+                });
+            })
     }
 
     return (
@@ -109,7 +142,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text">Seller</span>
                         </label>
-                        <input type="text" name="seller" placeholder="Type seller here" className="w-full max-w-xs input input-bordered" />
+                        <input type="text" name="seller" defaultValue={user.displayName} placeholder="Type seller here" className="w-full max-w-xs input input-bordered" />
                     </div>
                     <div className="w-full max-w-xs form-control">
                         <label className="label">
