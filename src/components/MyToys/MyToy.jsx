@@ -17,7 +17,7 @@ const MyToy = ({ toy, serial }) => {
             }
         })
             .then(result => {
-                if (result.deletedCount === 1) {
+                if (result) {
                     Swal.fire({
                         title: "Deleted !",
                         text: "Toy deleted successfully",
@@ -54,7 +54,7 @@ const MyToy = ({ toy, serial }) => {
                 {
                     (seller) ?
                         <>
-                            <span className="badge badge-ghost badge-sm">Seller: {seller}</span>
+                            <span className="badge badge-ghost badge-sm"><span className="mr-1">Seller:</span> {seller}</span>
                         </> :
                         <>
                             <span className="badge badge-ghost badge-sm">Seller: None </span>

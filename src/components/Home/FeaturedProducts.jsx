@@ -4,8 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import Slide from "./Slide";
 import { useEffect, useState } from "react";
 import { Hourglass } from "react-loader-spinner";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const FeaturedProducts = () => {
+
+    AOS.init();
 
     const [products, setProducts] = useState(null);
 
@@ -58,7 +62,8 @@ const FeaturedProducts = () => {
     };
 
     return (
-        <div>
+        <div data-aos="flip-right" data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000" >
             <br />
             <div className='text-center'>
                 <h2 className='text-3xl font-bold text-primary'>Featured Products</h2>

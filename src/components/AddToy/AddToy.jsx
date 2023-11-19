@@ -85,10 +85,10 @@ const AddToy = () => {
     return (
         <div>
             <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary divider w-6/12 mx-auto'>Add Toys</h2>
+                <h2 className='text-3xl font-bold text-primary divider w-full md:w-6/12 mx-auto'>Add Toys</h2>
             </div>
             <br /><br />
-            <form onSubmit={handleAddToy} className="w-9/12 p-10 mx-auto bg-base-200">
+            <form onSubmit={handleAddToy} className="card w-full md:w-9/12 p-10 mx-auto bg-base-200">
                 <div className="grid gap-5 md:grid-cols-2">
                     <div className="w-full max-w-xs form-control">
                         <label className="label">

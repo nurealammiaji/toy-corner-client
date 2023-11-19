@@ -3,8 +3,12 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import TabData from './TabData';
 import { Hourglass } from 'react-loader-spinner';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ProductTabs = () => {
+
+    AOS.init();
 
     const [tabIndex, setTabIndex] = useState(0);
     const [products, setProducts] = useState(null);
@@ -44,7 +48,8 @@ const ProductTabs = () => {
     </>
 
     return (
-        <div>
+        <div data-aos="zoom-out" data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000" >
             <br />
             <div className='text-center'>
                 <h2 className='text-3xl font-bold text-primary'>Shop by Category</h2>

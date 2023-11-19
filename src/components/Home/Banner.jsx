@@ -1,8 +1,14 @@
 import kidsFun from "../../assets/kids-fun.png";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Banner = () => {
+
+    AOS.init();
+    
     return (
-        <div>
+        <div data-aos="fade-up" data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000" >
             <div className="hero">
                 <div className="flex-col hero-content lg:flex-row-reverse">
                     <img src={kidsFun} className="w-full" />

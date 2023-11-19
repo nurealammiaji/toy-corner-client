@@ -1,6 +1,10 @@
 import PhotoAlbum from "react-photo-album";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Gallery = () => {
+
+    AOS.init();
 
     const photos = [
         { id: "01", src: "https://www.outdoortoys.com/cdn/shop/products/desert-adventurer-24v-childrens-utv-off-road-style-ride-on-buggy-735930_1024x.jpg", width: 800, height: 600 },
@@ -25,7 +29,7 @@ const Gallery = () => {
     ];
 
     return (
-        <div>
+        <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="2000" >
             <br />
             <div className='text-center'>
                 <h2 className='text-3xl font-bold text-primary'>Product Gallery</h2>

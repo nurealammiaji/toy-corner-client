@@ -18,7 +18,7 @@ const MyToys = () => {
     return (
         <div>
             <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary divider w-6/12 mx-auto'>My Toys</h2>
+                <h2 className='text-3xl font-bold text-primary divider w-full md:w-6/12 mx-auto'>My Toys</h2>
             </div>
             <br /><br />
             {

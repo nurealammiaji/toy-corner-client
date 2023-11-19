@@ -1,10 +1,9 @@
 import { PiEye } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import { Rating } from '@smastrom/react-rating';
 
 const Toy = ({ toy, serial }) => {
 
-    const { _id, name, manufacturer, price, image, description, ratings, seller } = toy;
+    const { _id, name, manufacturer, price, image, material, description, seller } = toy;
 
     return (
         <tr>
@@ -23,9 +22,9 @@ const Toy = ({ toy, serial }) => {
                 </div>
             </td>
             <td>
-                {description}
+                {description.slice(0,35)} ...
                 <br />
-                <span className="badge badge-ghost badge-sm"><span className="mr-2">Ratings:</span> <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></span>
+                <span className="badge badge-ghost badge-sm"><span className="mr-1">Sub-Category:</span> {material}</span>
             </td>
             <td>
                 {manufacturer}
