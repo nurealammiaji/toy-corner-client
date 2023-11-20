@@ -10,7 +10,7 @@ const MyToy = ({ toy, serial }) => {
 
     const handleDeleteToy = (_id) => {
         console.log("Delete", _id);
-        fetch(`http://localhost:5000/products/seller/${_id}`, {
+        fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${_id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json"

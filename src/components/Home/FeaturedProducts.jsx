@@ -14,7 +14,7 @@ const FeaturedProducts = () => {
     const [products, setProducts] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products?limit=10')
+        fetch('https://toy-corner-server-bd.vercel.app/products?limit=10')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])

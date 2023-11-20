@@ -15,7 +15,7 @@ const ProductTabs = () => {
     const [category, setCategory] = useState("Plastic");
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/categories/${category}`)
+        fetch(`https://toy-corner-server-bd.vercel.app/products/categories/${category}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [category])

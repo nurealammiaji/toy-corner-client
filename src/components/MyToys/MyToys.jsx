@@ -11,7 +11,7 @@ const MyToys = () => {
     const [toys, setToys] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/seller/${user.email}`)
+        fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${user.email}`)
             .then(res => res.json())
             .then(data => setToys(data))
     }, [user.email])
