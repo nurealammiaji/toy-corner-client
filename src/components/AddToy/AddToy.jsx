@@ -17,6 +17,8 @@ const AddToy = () => {
         const name = form.name.value;
         const price = form.price.value;
         const color = form.color.value;
+        const quantity = form.quantity.value;
+        const category = form.category.value;
         const material = form.material.value;
         const availability = form.availability.value;
         const age = form.age.value;
@@ -31,7 +33,7 @@ const AddToy = () => {
             manufacturer: manufacturer,
             seller: seller,
             sellerEmail: user.email,
-            material: material,
+            subCategory: material,
             color: color,
             ageRange: age,
             description: description,
@@ -40,12 +42,13 @@ const AddToy = () => {
                 amount: price,
             },
             availability: availability,
-            category: "Educational",
+            category: category,
             ratings: {
                 scale: 5,
                 value: ratings,
                 reviews: reviews,
             },
+            quantity: quantity,
             image: image
         }
 
@@ -85,10 +88,10 @@ const AddToy = () => {
     return (
         <div>
             <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary divider w-full md:w-6/12 mx-auto'>Add Toys</h2>
+                <h2 className='w-full mx-auto text-3xl font-bold text-primary divider md:w-6/12'>Add Toys</h2>
             </div>
             <br /><br />
-            <form onSubmit={handleAddToy} className="card w-full md:w-9/12 p-10 mx-auto bg-base-200">
+            <form onSubmit={handleAddToy} className="w-full p-10 mx-auto card md:w-9/12 bg-base-200">
                 <div className="grid gap-5 md:grid-cols-2">
                     <div className="w-full max-w-xs form-control">
                         <label className="label">
@@ -104,27 +107,58 @@ const AddToy = () => {
                     </div>
                     <div className="w-full max-w-xs form-control">
                         <label className="label">
+                            <span className="label-text">Category</span>
+                        </label>
+                        <select className="select-bordered select">
+                            <option value="Toy Vehicles">Toy Vehicles</option>
+                            <option value="Remote Control">Remote Control</option>
+                            <option value="Educational">Educational</option>
+                            <option value="Classic Toys">Classic Toys</option>
+                        </select>
+                    </div>
+                    <div className="w-full max-w-xs form-control">
+                        <label className="label">
+                            <span className="label-text">Material</span>
+                        </label>
+                        <select className="select select-bordered">
+                            <option value="Plastic">Plastic</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Alloy">Alloy</option>
+                            <option value="Composite">Composite</option>
+                        </select>
+                    </div>
+                    <div className="w-full max-w-xs form-control">
+                        <label className="label">
+                            <span className="label-text">Availability</span>
+                        </label>
+                        <select className="select select-bordered">
+                            <option value="In Stock">In Stock</option>
+                            <option value="Limited Stock">Limited Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div className="w-full max-w-xs form-control">
+                        <label className="label">
+                            <span className="label-text">Quantity</span>
+                        </label>
+                        <input type="text" name="quantity" placeholder="Type quantity here" className="w-full max-w-xs input input-bordered" />
+                    </div>
+                    <div className="w-full max-w-xs form-control">
+                        <label className="label">
                             <span className="label-text">Color</span>
                         </label>
                         <input type="text" name="color" placeholder="Type color here" className="w-full max-w-xs input input-bordered" />
                     </div>
                     <div className="w-full max-w-xs form-control">
                         <label className="label">
-                            <span className="label-text">Material</span>
-                        </label>
-                        <input type="text" name="material" placeholder="Type variant here" className="w-full max-w-xs input input-bordered" />
-                    </div>
-                    <div className="w-full max-w-xs form-control">
-                        <label className="label">
-                            <span className="label-text">Availability</span>
-                        </label>
-                        <input type="text" name="availability" placeholder="Type availability here" className="w-full max-w-xs input input-bordered" />
-                    </div>
-                    <div className="w-full max-w-xs form-control">
-                        <label className="label">
                             <span className="label-text">Age Group</span>
                         </label>
-                        <input type="text" name="age" placeholder="Type age group here" className="w-full max-w-xs input input-bordered" />
+                        <select className="select-bordered select">
+                            <option value="3-6 years">3-6 years</option>
+                            <option value="3-7 years">3-7 years</option>
+                            <option value="4-8 years">4-8 years</option>
+                            <option value="5-12 years">5-12 years</option>
+                        </select>
                     </div>
                     <div className="w-full max-w-xs form-control">
                         <label className="label">
@@ -161,7 +195,7 @@ const AddToy = () => {
                     <label className="label">
                         <span className="label-text">Description</span>
                     </label>
-                    <textarea type="text" name="description" placeholder="Type description here" className="w-full pt-3 input input-bordered" />
+                    <textarea type="text" name="description" placeholder="Type description here" className="w-full p-3 rounded-md" rows={4} />
                 </div>
                 <button type="submit" className="w-full mt-10 btn btn-primary">Add Toy</button>
             </form>

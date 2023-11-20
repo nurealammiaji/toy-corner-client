@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 const Toy = ({ toy, serial }) => {
 
-    const { _id, name, manufacturer, price, image, material, description, seller } = toy;
+    const { _id, name, manufacturer, quantity, image, subCategory, description, seller } = toy;
 
     return (
         <tr>
             <td>{serial}</td>
             <td>
                 <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
+                    <div className="w-12 h-12 mask mask-squircle">
                         <img src={image} />
                     </div>
                 </div>
@@ -18,13 +18,13 @@ const Toy = ({ toy, serial }) => {
             <td>
                 <div>
                     <div className="font-bold">{name}</div>
-                    <div className="text-sm opacity-50">{price.amount} {price.currency}</div>
+                    <div className="text-sm opacity-50">Quantity: {quantity}</div>
                 </div>
             </td>
             <td>
                 {description.slice(0,35)} ...
                 <br />
-                <span className="badge badge-ghost badge-sm"><span className="mr-1">Sub-Category:</span> {material}</span>
+                <span className="badge badge-ghost badge-sm"><span className="mr-1">Sub-Category:</span> {subCategory}</span>
             </td>
             <td>
                 {manufacturer}

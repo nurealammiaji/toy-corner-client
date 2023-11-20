@@ -5,12 +5,12 @@ import { Rating } from '@smastrom/react-rating';
 const ToyDetails = () => {
 
     const toy = useLoaderData();
-    const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, material } = toy;
+    const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, subCategory } = toy;
 
     return (
         <div>
             <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary divider w-6/12 mx-auto'>Toy Details</h2>
+                <h2 className='w-6/12 mx-auto text-3xl font-bold text-primary divider'>Toy Details</h2>
             </div>
             <br /><br />
             <div className="w-full mx-auto shadow-xl md:w-8/12 card card-compact bg-base-100">
@@ -21,7 +21,7 @@ const ToyDetails = () => {
                     <h4><span className="font-medium">Price:</span> {price.amount} {price.currency}</h4>
                     <p><span className="font-medium">Availability:</span> {availability}</p>
                     <p><span className="font-medium">Color:</span> {color}</p>
-                    <p><span className="font-medium">Material:</span> {material}</p>
+                    <p><span className="font-medium">Material:</span> {subCategory}</p>
                     <p><span className="font-medium">Age Group:</span> {ageRange}</p>
                     <p><span className="font-medium">Manufacturer:</span>  {manufacturer}</p>
                     <p><span className="font-medium">Description:</span> {description}</p>

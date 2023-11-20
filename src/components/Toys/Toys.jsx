@@ -15,7 +15,7 @@ const Toys = () => {
     return (
         <div>
             <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary divider w-full md:w-6/12 mx-auto'>All Toys</h2>
+                <h2 className='w-full mx-auto text-3xl font-bold text-primary divider md:w-6/12'>All Toys</h2>
             </div>
             <br /><br />
             <div>
@@ -29,7 +29,7 @@ const Toys = () => {
                                         <tr>
                                             <th>Serial</th>
                                             <th>Image</th>
-                                            <th>Name / Price</th>
+                                            <th>Name / Quantity</th>
                                             <th>Description / Sub-Category</th>
                                             <th>Manufacturer / Seller</th>
                                             <th>Details</th>
