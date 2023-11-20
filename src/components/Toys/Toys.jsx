@@ -1,6 +1,7 @@
 import Toy from './Toy';
 import { Hourglass } from "react-loader-spinner";
 import { useEffect, useState } from "react";
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const Toys = () => {
 
@@ -14,6 +15,7 @@ const Toys = () => {
 
     return (
         <div>
+            <DynamicTitle title="All Toys"></DynamicTitle>
             <div className='text-center'>
                 <h2 className='w-full mx-auto text-3xl font-bold text-primary divider md:w-6/12'>All Toys</h2>
             </div>

@@ -5,6 +5,7 @@ import { PiGoogleLogoBold } from "react-icons/pi";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { updateProfile } from "firebase/auth";
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const Register = () => {
 
@@ -68,6 +69,11 @@ const Register = () => {
     return (
         <div>
             <ToastContainer />
+            <DynamicTitle title="Register"></DynamicTitle>
+            <div className='text-center'>
+                <h2 className='w-full mx-auto text-3xl font-bold md:w-6/12 text-primary divider'>Register</h2>
+            </div>
+            <br /><br />
             <div className="flex-col hero-content lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <img src="" alt="" />

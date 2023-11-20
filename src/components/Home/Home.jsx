@@ -3,11 +3,13 @@ import FeaturedProducts from "./FeaturedProducts";
 import Gallery from "./Gallery";
 import ProductTabs from "./ProductTabs";
 import TrendingProducts from "./TrendingProducts";
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const Home = () => {
 
     return (
         <div>
+            <DynamicTitle title="Home"></DynamicTitle>
             <Banner></Banner>
             <br /><br />
             <FeaturedProducts></FeaturedProducts>

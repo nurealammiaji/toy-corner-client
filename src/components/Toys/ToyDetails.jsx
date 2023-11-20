@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { PiHeart, PiHeartFill, PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import { Rating } from '@smastrom/react-rating';
+import DynamicTitle from "../DynamicTitle/DynamicTitle";
 
 const ToyDetails = () => {
 
@@ -9,8 +10,9 @@ const ToyDetails = () => {
 
     return (
         <div>
+            <DynamicTitle title="Toy Details"></DynamicTitle>
             <div className='text-center'>
-                <h2 className='w-6/12 mx-auto text-3xl font-bold text-primary divider'>Toy Details</h2>
+                <h2 className='w-full mx-auto text-3xl font-bold md:w-6/12 text-primary divider'>Toy Details</h2>
             </div>
             <br /><br />
             <div className="w-full mx-auto shadow-xl md:w-8/12 card card-compact bg-base-100">

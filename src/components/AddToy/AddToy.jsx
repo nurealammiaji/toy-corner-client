@@ -3,6 +3,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 import { useNavigate } from "react-router-dom";
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 
 const AddToy = () => {
@@ -87,6 +88,7 @@ const AddToy = () => {
 
     return (
         <div>
+            <DynamicTitle title="Add Toys"></DynamicTitle>
             <div className='text-center'>
                 <h2 className='w-full mx-auto text-3xl font-bold text-primary divider md:w-6/12'>Add Toys</h2>
             </div>

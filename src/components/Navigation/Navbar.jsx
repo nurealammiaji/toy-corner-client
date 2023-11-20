@@ -64,7 +64,7 @@ const Navbar = () => {
                             <li tabIndex={0}>
                                 <details>
                                     <summary>My Area</summary>
-                                    <ul className="p-2">
+                                    <ul className="p-2 [&>*]:w-[100px]">
                                         <li><Link to="add-toys">Add Toys</Link></li>
                                         <li><Link to="my-toys">My Toys</Link></li>
                                     </ul>
@@ -77,13 +77,13 @@ const Navbar = () => {
                     <div className="mr-1 drawer-content tooltip" data-tip="Wishlist">
                         <label htmlFor="wishlist-drawer" className="relative drawer-button">
                             <PiHeart className="text-xl md:text-2xl" />
-                            <span className="absolute left-0 p-1 top-7 badge badge-primary badge-sm">0</span>
+                            <span className="absolute left-0 p-1 top-2 badge badge-primary badge-sm">0</span>
                         </label>
                     </div>
                     <div className="mr-3 md:mr-5 drawer-content tooltip" data-tip="Cart">
                         <label htmlFor="cart-drawer" className="relative drawer-button">
                             <PiShoppingCart className="text-xl md:text-2xl" />
-                            <span className="absolute left-0 p-1 top-7 badge badge-primary badge-sm">0</span>
+                            <span className="absolute left-0 p-1 top-2 badge badge-primary badge-sm">0</span>
                         </label>
                     </div>
                     {(user) ?

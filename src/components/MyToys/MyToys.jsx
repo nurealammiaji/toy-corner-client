@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Hourglass } from "react-loader-spinner";
 import { AuthContext } from "../../providers/AuthProvider";
 import MyToy from "./MyToy";
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const MyToys = () => {
 
@@ -17,8 +18,9 @@ const MyToys = () => {
 
     return (
         <div>
+            <DynamicTitle title="My Toys"></DynamicTitle>
             <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary divider w-full md:w-6/12 mx-auto'>My Toys</h2>
+                <h2 className='w-full mx-auto text-3xl font-bold text-primary divider md:w-6/12'>My Toys</h2>
             </div>
             <br /><br />
             {

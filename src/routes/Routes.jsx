@@ -12,6 +12,9 @@ import Toys from '../components/Toys/Toys';
 import ToyDetails from "../components/Toys/ToyDetails";
 import AddToy from "../components/AddToy/AddToy";
 import MyToys from '../components/MyToys/MyToys';
+import Checkout from "../components/Checkout/Checkout";
+import Wishlist from '../components/Wishlist/Wishlist';
+import Cart from '../components/Cart/Cart';
 
 const Routes = createBrowserRouter([
     {
@@ -39,6 +42,18 @@ const Routes = createBrowserRouter([
             {
                 path: "my-toys",
                 element: <Private><MyToys></MyToys></Private>
+            },
+            {
+                path: "wishlist",
+                element: <Private><Wishlist></Wishlist></Private>
+            },
+            {
+                path: "cart",
+                element: <Private><Cart></Cart></Private>
+            },
+            {
+                path: "checkout",
+                element: <Private><Checkout></Checkout></Private>
             },
             {
                 path: "blog",
