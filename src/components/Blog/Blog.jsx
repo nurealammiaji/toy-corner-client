@@ -1,15 +1,15 @@
-
 import { useState } from 'react';
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
 import { useEffect } from 'react';
 import Post from './Post';
+import { Hourglass } from 'react-loader-spinner';
 
 const Blog = () => {
 
     const [posts, setPosts] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:5000/blog')
+        fetch('https://toy-corner-server-bd.vercel.app/blog')
             .then(res => res.json())
             .then(data => setPosts(data))
     })
@@ -29,11 +29,16 @@ const Blog = () => {
                         }
                     </div> :
                     <>
-                        <div className="flex flex-col gap-4 w-52">
-                            <div className="skeleton h-32 w-full"></div>
-                            <div className="skeleton h-4 w-28"></div>
-                            <div className="skeleton h-4 w-full"></div>
-                            <div className="skeleton h-4 w-full"></div>
+                        <div className="flex items-center justify-center">
+                            <Hourglass
+                                visible={true}
+                                height="20"
+                                width="20"
+                                ariaLabel="hourglass-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                                colors={['navy', 'crimson']}
+                            /><p className='ml-3 text-lg font-medium text-red-700'>Loading ...</p>
                         </div>
                     </>
             }
