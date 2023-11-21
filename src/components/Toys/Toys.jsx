@@ -21,7 +21,7 @@ const Toys = () => {
         event.preventDefault();
         const form = event.target;
         const text = form.text.value;
-        fetch(`http://localhost:5000/products/search/${text}`)
+        fetch(`https://toy-corner-server-bd.vercel.app/products/search/${text}`)
             .then(res => res.json())
             .then(data => {
                 setToys(data);

@@ -44,7 +44,7 @@ const MyToy = ({ toy, serial }) => {
                 </div>
             </td>
             <td>
-                {description.slice(0,35)}..
+                {description.slice(0, 35)}..
                 <br />
                 <span className="badge badge-ghost badge-sm"><span className="mr-2">Ratings:</span> <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></span>
             </td>
