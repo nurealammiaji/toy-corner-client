@@ -15,6 +15,7 @@ import MyToys from '../components/MyToys/MyToys';
 import Checkout from "../components/Checkout/Checkout";
 import Wishlist from '../components/Wishlist/Wishlist';
 import Cart from '../components/Cart/Cart';
+import UpdateToy from '../components/UpdateToy/UpdateToy';
 
 const Routes = createBrowserRouter([
     {
@@ -28,12 +29,17 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "toys",
-                element: <Private><Toys></Toys></Private>,
+                element: <Toys></Toys>
             },
             {
                 path: "toys/:id",
                 element: <Private><ToyDetails></ToyDetails></Private>,
                 loader: ({ params }) => fetch(`https://toy-corner-server-bd.vercel.app/products/${params.id}`)
+            },
+            {
+                path: "toys/update/:id",
+                element: <Private><UpdateToy></UpdateToy></Private>,
+                loader: ({params}) => fetch(`https://toy-corner-server-bd.vercel.app/products/${params.id}`)
             },
             {
                 path: "add-toys",

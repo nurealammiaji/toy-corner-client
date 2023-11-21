@@ -6,6 +6,7 @@ import DynamicTitle from "../DynamicTitle/DynamicTitle";
 const ToyDetails = () => {
 
     const toy = useLoaderData();
+
     const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, subCategory } = toy;
 
     return (

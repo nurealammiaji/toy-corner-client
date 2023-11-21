@@ -32,7 +32,7 @@ const MyToy = ({ toy, serial }) => {
             <td>{serial}</td>
             <td>
                 <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
+                    <div className="w-12 h-12 mask mask-squircle">
                         <img src={image} />
                     </div>
                 </div>
@@ -44,7 +44,7 @@ const MyToy = ({ toy, serial }) => {
                 </div>
             </td>
             <td>
-                {description}
+                {description.slice(0,35)}..
                 <br />
                 <span className="badge badge-ghost badge-sm"><span className="mr-2">Ratings:</span> <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></span>
             </td>
@@ -67,7 +67,9 @@ const MyToy = ({ toy, serial }) => {
                         <Link to={`/toys/${_id}`}>
                             <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View"><PiEye className="text-xl" /></button>
                         </Link>
-                        <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Update"><PiPen className="text-xl" /></button>
+                        <Link to={`/toys/update/${_id}`}>
+                            <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Update"><PiPen className="text-xl" /></button>
+                        </Link>
                         <button onClick={() => { handleDeleteToy(_id) }} className="btn btn-sm hover:btn-ghost btn-error join-item tooltip" data-tip="Delete"><PiTrash className="text-xl" /></button>
                     </div>
                 </div>

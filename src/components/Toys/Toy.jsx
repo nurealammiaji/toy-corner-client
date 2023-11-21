@@ -22,20 +22,22 @@ const Toy = ({ toy, serial }) => {
                 </div>
             </td>
             <td>
-                {description.slice(0,35)} ...
+                {description.slice(0, 35)}..
                 <br />
-                <span className="badge badge-ghost badge-sm"><span className="mr-1">Sub-Category:</span> {subCategory}</span>
+                <span className="mr-1 font-light">Sub-Category:</span>
+                <span className="badge badge-ghost badge-sm">{subCategory}</span>
             </td>
             <td>
                 {manufacturer}
                 <br />
+                <span className="mr-1 font-light">Seller: </span>
                 {
                     (seller) ?
                         <>
-                            <span className="badge badge-ghost badge-sm">Seller: {seller}</span>
+                            <span className="badge badge-ghost badge-sm">{seller}</span>
                         </> :
                         <>
-                            <span className="badge badge-ghost badge-sm">Seller: None </span>
+                            <span className="font-thin">None</span>
                         </>
                 }
             </td>
