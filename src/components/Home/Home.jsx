@@ -7,9 +7,14 @@ import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const Home = () => {
 
+    const pinnedPost = localStorage.getItem('pinnedPost-title');
+
     return (
         <div>
             <DynamicTitle title="Home"></DynamicTitle>
+            <div>
+                <p>Pinned Blog: {pinnedPost}</p>
+            </div>
             <Banner></Banner>
             <br /><br />
             <FeaturedProducts></FeaturedProducts>

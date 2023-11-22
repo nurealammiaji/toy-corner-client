@@ -16,6 +16,7 @@ import Checkout from "../components/Checkout/Checkout";
 import Wishlist from '../components/Wishlist/Wishlist';
 import Cart from '../components/Cart/Cart';
 import UpdateToy from '../components/UpdateToy/UpdateToy';
+import InfoProvider from "../providers/InfoProvider";
 
 const Routes = createBrowserRouter([
     {
@@ -25,7 +26,7 @@ const Routes = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home></Home>
+                element: <InfoProvider><Home></Home></InfoProvider>
             },
             {
                 path: "toys",
@@ -63,7 +64,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "blog",
-                element: <Blog></Blog>
+                element: <InfoProvider><Blog></Blog></InfoProvider>
             },
             {
                 path: "register",

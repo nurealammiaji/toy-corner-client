@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
-import { useEffect } from 'react';
 import Post from './Post';
 import { Hourglass } from 'react-loader-spinner';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Blog = () => {
 
@@ -14,6 +14,10 @@ const Blog = () => {
             .then(data => setPosts(data))
     })
 
+    const blogPinHandler = (title) => {
+        localStorage.setItem('pinnedPost-title', title);
+    }
+
     return (
         <div>
             <DynamicTitle title="Blog"></DynamicTitle>
@@ -23,9 +27,9 @@ const Blog = () => {
             <br /><br />
             {
                 (posts) ?
-                    <div className='grid md:grid-cols-2 gap-10'>
+                    <div className='grid gap-10 md:grid-cols-2'>
                         {
-                            posts.map(post => <Post key={post._id} post={post}></Post>)
+                            posts.map(post => <Post key={post._id} post={post}blogPinHandler={blogPinHandler}></Post>)
                         }
                     </div> :
                     <>
