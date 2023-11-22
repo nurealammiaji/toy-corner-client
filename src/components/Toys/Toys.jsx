@@ -27,7 +27,7 @@ const Toys = () => {
                 setToys(data);
                 setFound(data);
                 if (data.length === 0) {
-                    toast.error("Not Found !!", {
+                    toast.error("Sorry, Not Found !!", {
                         position: toast.POSITION.TOP_CENTER
                     });
                 }
@@ -55,7 +55,7 @@ const Toys = () => {
             <div className="text-center">
                 <form onSubmit={handleSearch} className="join">
                     <div>
-                        <input name='text' type='text' className="input input-bordered join-item w-full" placeholder="Toy Name" required />
+                        <input name='text' type='text' className="w-full input input-bordered join-item" placeholder="Toy Name" required />
                     </div>
                     <div>
                         <button type='submit' className="btn join-item">Search</button>
@@ -66,20 +66,20 @@ const Toys = () => {
             {
                 (found && found.length === 0) ?
                     <div className='text-center'>
-                        <p className='text-red-600 font-semibold mb-1'>Sorry, Not Found !!</p>
-                        <p className='italic text-sm'>Please try with another character or word</p>
+                        <p className='mb-1 font-semibold text-red-600'>Sorry, Not Found !!</p>
+                        <p className='text-sm italic'>Please try with another character or word</p>
                     </div> : null
             }
             {
                 (found && found.length === 1) ?
                     <div className='text-center'>
-                        <p className='text-green-600 font-semibold mb-1'>{found.length} Result Found !!</p>
+                        <p className='mb-1 font-semibold text-green-600'>{found.length} Result Found !!</p>
                     </div> : null
             }
             {
                 (found && found.length > 1) ?
                     <div className='text-center'>
-                        <p className='text-green-600 font-semibold mb-1'>{found.length} Results Found !!</p>
+                        <p className='mb-1 font-semibold text-green-600'>{found.length} Results Found !!</p>
                     </div> : null
             }
             <br />
