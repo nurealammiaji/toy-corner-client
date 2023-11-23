@@ -143,7 +143,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text">Quantity</span>
                         </label>
-                        <input type="text" name="quantity" placeholder="Type quantity here" className="w-full input input-bordered" />
+                        <input type="number" name="quantity" placeholder="Type quantity here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">
@@ -166,7 +166,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text">Ratings</span>
                         </label>
-                        <input type="number" name="ratings" placeholder="Type manufacturer here" className="w-full input input-bordered" />
+                        <input type="text" name="ratings" placeholder="Type manufacturer here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">
@@ -197,7 +197,7 @@ const AddToy = () => {
                     <label className="label">
                         <span className="label-text">Description</span>
                     </label>
-                    <textarea type="text" name="description" placeholder="Type description here" className="w-full p-3 rounded-md" rows={4} />
+                    <textarea type="text" name="description" placeholder="Type description here" className="textarea-bordered textarea" rows={4} />
                 </div>
                 <button type="submit" className="w-full mt-10 btn btn-primary">Add Toy</button>
             </form>

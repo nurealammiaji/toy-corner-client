@@ -1,5 +1,5 @@
 import { PiEye, PiPen, PiTrash } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Rating } from '@smastrom/react-rating';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
@@ -8,8 +8,9 @@ const MyToy = ({ toy, serial }) => {
 
     const { _id, name, manufacturer, price, image, description, ratings, seller } = toy;
 
+    const navigate = useNavigate();
+
     const handleDeleteToy = (_id) => {
-        console.log("Delete", _id);
         fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${_id}`, {
             method: "DELETE",
             headers: {
@@ -23,8 +24,10 @@ const MyToy = ({ toy, serial }) => {
                         text: "Toy deleted successfully",
                         icon: "success"
                     });
+                    navigate("/my-toys", {replace: true});
                 }
             })
+            .then(error => console.log(error))
     }
 
     return (

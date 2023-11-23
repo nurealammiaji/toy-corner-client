@@ -4,17 +4,14 @@ import Gallery from "./Gallery";
 import ProductTabs from "./ProductTabs";
 import TrendingProducts from "./TrendingProducts";
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
+import PinnedPost from "./PinnedPost";
 
 const Home = () => {
-
-    const pinnedPost = localStorage.getItem('pinnedPost-title');
 
     return (
         <div>
             <DynamicTitle title="Home"></DynamicTitle>
-            <div>
-                <p>Pinned Blog: {pinnedPost}</p>
-            </div>
+            <PinnedPost></PinnedPost>
             <Banner></Banner>
             <br /><br />
             <FeaturedProducts></FeaturedProducts>

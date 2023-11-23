@@ -8,7 +8,6 @@ import DynamicTitle from '../DynamicTitle/DynamicTitle';
 const UpdateToy = () => {
 
     const loadedToy = useLoaderData();
-    console.log(loadedToy);
 
     const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, category, subCategory, quantity } = loadedToy;
 
@@ -16,7 +15,7 @@ const UpdateToy = () => {
 
     const navigate = useNavigate();
 
-    const handleAddToy = (event) => {
+    const handleUpdateToy = (event) => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -56,10 +55,10 @@ const UpdateToy = () => {
             quantity: quantity,
             image: image
         }
-
+        console.log(toy);
         //Adding Toy to the database
-        fetch('https://toy-corner-server-bd.vercel.app/products/', {
-            method: "POST",
+        fetch(`https://toy-corner-server-bd.vercel.app/products/${_id}`, {
+            method: "PUT",
             headers: {
                 "content-type": "application/json"
             },
@@ -69,8 +68,8 @@ const UpdateToy = () => {
                 console.log(result);
                 if (result) {
                     Swal.fire({
-                        title: "Added !",
-                        text: "Toy added successfully",
+                        title: "Updated !!",
+                        text: "Toy updated successfully",
                         icon: "success"
                     });
                     form.reset();
@@ -83,8 +82,8 @@ const UpdateToy = () => {
             .catch(error => {
                 console.log(error);
                 Swal.fire({
-                    title: "Failed!",
-                    text: "Toy adding unsuccessful",
+                    title: "Failed !!",
+                    text: "Toy updating unsuccessful",
                     icon: "error"
                 });
             })
@@ -97,7 +96,7 @@ const UpdateToy = () => {
                 <h2 className='w-full mx-auto text-3xl font-bold text-primary divider md:w-6/12'>Update Toys</h2>
             </div>
             <br /><br />
-            <form onSubmit={handleAddToy} className="w-full p-10 mx-auto card md:w-9/12 bg-base-200">
+            <form onSubmit={handleUpdateToy} className="w-full p-10 mx-auto card md:w-9/12 bg-base-200">
                 <div className="grid gap-5 md:grid-cols-2">
                     <div className="w-full form-control">
                         <label className="label">

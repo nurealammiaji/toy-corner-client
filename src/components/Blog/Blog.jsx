@@ -3,23 +3,32 @@ import Post from './Post';
 import { Hourglass } from 'react-loader-spinner';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const Blog = () => {
 
-    const [posts, setPosts] = useState(null);
+    const { user } = useContext(AuthContext);
+    const [posts, setPosts] = useState();
 
     useEffect(() => {
         fetch('https://toy-corner-server-bd.vercel.app/blog')
             .then(res => res.json())
             .then(data => setPosts(data))
-    })
+    }, [])
 
     const blogPinHandler = (title) => {
-        localStorage.setItem('pinnedPost-title', title);
+        localStorage.setItem("toyCorner-pinnedPost", title);
+        toast("Post Pinned Successfully !!", {
+            position: toast.POSITION.TOP_CENTER
+        });
     }
 
     return (
         <div>
+            <ToastContainer />
             <DynamicTitle title="Blog"></DynamicTitle>
             <div className='text-center'>
                 <h2 className='w-full mx-auto text-3xl font-bold md:w-6/12 text-primary divider'>Blog</h2>
@@ -29,7 +38,7 @@ const Blog = () => {
                 (posts) ?
                     <div className='grid gap-10 md:grid-cols-2'>
                         {
-                            posts.map(post => <Post key={post._id} post={post}blogPinHandler={blogPinHandler}></Post>)
+                            posts.map(post => <Post key={post._id} post={post} user={user} blogPinHandler={blogPinHandler}></Post>)
                         }
                     </div> :
                     <>

@@ -1,6 +1,6 @@
 import { PiPushPinBold } from "react-icons/pi";
 
-const Post = ({ post, blogPinHandler }) => {
+const Post = ({ post, user, blogPinHandler }) => {
 
     const { _id, title, author, authorEmail, authorImage, image, details } = post;
 
@@ -15,7 +15,10 @@ const Post = ({ post, blogPinHandler }) => {
                             <p className="font-thin text-gray-500 shadow-inner badge"><span className="mr-2">Author:</span> {author}</p>
                         </div>
                         <div>
-                            <button onClick={() => blogPinHandler(title)} className="p-0 btn btn-sm btn-ghost tooltip" data-tip="Pin this blog"><PiPushPinBold className="text-xl"/></button>
+                            {
+                                (user) &&
+                                <button onClick={() => blogPinHandler(title)} className="p-0 btn btn-sm btn-ghost tooltip" data-tip="Pin this blog"><PiPushPinBold className="text-lg text-primary" /></button>
+                            }
                         </div>
                     </div>
                     <br />

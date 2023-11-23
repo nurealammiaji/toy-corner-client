@@ -7,12 +7,11 @@ import DynamicTitle from '../DynamicTitle/DynamicTitle';
 const MyToys = () => {
 
     const { user } = useContext(AuthContext);
-    const { email } = user;
 
-    const [toys, setToys] = useState(null);
+    const [toys, setToys] = useState([]);
 
     useEffect(() => {
-        fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${email}`, {
+        fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${user.email}`, {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem('toyCorner-user-token')}`
@@ -22,7 +21,7 @@ const MyToys = () => {
             .then(data => {
                 setToys(data);
             })
-    }, [email])
+    }, [user.email])
 
     return (
         <div>
@@ -50,21 +49,8 @@ const MyToys = () => {
                                 <tbody>
                                     {/* row */}
                                     {
-                                        (toys) ?
-                                            toys.map((toy, index) => <MyToy key={toy._id} toy={toy} serial={index + 1}></MyToy>) :
-                                            <>
-                                                <div className="flex items-center justify-center">
-                                                    <Hourglass
-                                                        visible={true}
-                                                        height="20"
-                                                        width="20"
-                                                        ariaLabel="hourglass-loading"
-                                                        wrapperStyle={{}}
-                                                        wrapperClass=""
-                                                        colors={['navy', 'crimson']}
-                                                    /><p className='ml-3 text-lg font-medium text-red-700'>Loading ...</p>
-                                                </div>
-                                            </>
+                                        (toys) &&
+                                        toys.map((toy, index) => <MyToy key={toy._id} toy={toy} serial={index + 1}></MyToy>)
                                     }
                                 </tbody>
                             </table>

@@ -16,7 +16,7 @@ import Checkout from "../components/Checkout/Checkout";
 import Wishlist from '../components/Wishlist/Wishlist';
 import Cart from '../components/Cart/Cart';
 import UpdateToy from '../components/UpdateToy/UpdateToy';
-import InfoProvider from "../providers/InfoProvider";
+
 
 const Routes = createBrowserRouter([
     {
@@ -26,7 +26,7 @@ const Routes = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <InfoProvider><Home></Home></InfoProvider>
+                element: <Home></Home>
             },
             {
                 path: "toys",
@@ -40,7 +40,7 @@ const Routes = createBrowserRouter([
             {
                 path: "toys/update/:id",
                 element: <Private><UpdateToy></UpdateToy></Private>,
-                loader: ({params}) => fetch(`https://toy-corner-server-bd.vercel.app/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://toy-corner-server-bd.vercel.app/products/${params.id}`)
             },
             {
                 path: "add-toys",
@@ -64,7 +64,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path: "blog",
-                element: <InfoProvider><Blog></Blog></InfoProvider>
+                element: <Blog></Blog>
             },
             {
                 path: "register",
