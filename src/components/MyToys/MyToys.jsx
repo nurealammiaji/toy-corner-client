@@ -30,13 +30,12 @@ const MyToys = () => {
 
     const handleDeleteToy = (_id) => {
         fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${_id}`, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json"
-            }
+            method: "DELETE"
         })
             .then(result => {
                 if (result) {
+                    const remaining = toys.filter(toy => toy._id !== _id);
+                    setToys(remaining);
                     Swal.fire({
                         title: "Deleted !",
                         text: "Toy deleted successfully",
