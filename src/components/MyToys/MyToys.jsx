@@ -3,6 +3,9 @@ import { Hourglass } from "react-loader-spinner";
 import { AuthContext } from "../../providers/AuthProvider";
 import MyToy from "./MyToy";
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
 
 const MyToys = () => {
 
@@ -22,6 +25,28 @@ const MyToys = () => {
                 setToys(data);
             })
     }, [user.email])
+
+    const navigate = useNavigate();
+
+    const handleDeleteToy = (_id) => {
+        fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${_id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(result => {
+                if (result) {
+                    Swal.fire({
+                        title: "Deleted !",
+                        text: "Toy deleted successfully",
+                        icon: "success"
+                    });
+                    navigate("/my-toys", { replace: true });
+                }
+            })
+            .then(error => console.log(error))
+    }
 
     return (
         <div>
@@ -50,7 +75,7 @@ const MyToys = () => {
                                     {/* row */}
                                     {
                                         (toys) &&
-                                        toys.map((toy, index) => <MyToy key={toy._id} toy={toy} serial={index + 1}></MyToy>)
+                                        toys.map((toy, index) => <MyToy key={toy._id} toy={toy} serial={index + 1} handleDeleteToy={handleDeleteToy}></MyToy>)
                                     }
                                 </tbody>
                             </table>

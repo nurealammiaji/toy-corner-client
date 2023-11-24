@@ -1,34 +1,12 @@
 import { PiEye, PiPen, PiTrash } from "react-icons/pi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Rating } from '@smastrom/react-rating';
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
 
-const MyToy = ({ toy, serial }) => {
+const MyToy = ({ toy, serial, handleDeleteToy }) => {
 
     const { _id, name, manufacturer, price, image, description, ratings, seller } = toy;
 
-    const navigate = useNavigate();
 
-    const handleDeleteToy = (_id) => {
-        fetch(`https://toy-corner-server-bd.vercel.app/products/seller/${_id}`, {
-            method: "DELETE",
-            headers: {
-                "content-type": "application/json"
-            }
-        })
-            .then(result => {
-                if (result) {
-                    Swal.fire({
-                        title: "Deleted !",
-                        text: "Toy deleted successfully",
-                        icon: "success"
-                    });
-                    navigate("/my-toys", {replace: true});
-                }
-            })
-            .then(error => console.log(error))
-    }
 
     return (
         <tr>
