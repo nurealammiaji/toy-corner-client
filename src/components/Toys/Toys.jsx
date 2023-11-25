@@ -1,6 +1,6 @@
 import Toy from './Toy';
 import { Hourglass } from "react-loader-spinner";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,18 +12,19 @@ const Toys = () => {
     const [found, setFound] = useState(null);
     const [sortMethod, setSortMethod] = useState(null);
     const [quantity, setQuantity] = useState(20);
+    const [searchText, setSearchText] = useState();
+    const searchRef = useRef();
 
     useEffect(() => {
-        fetch(`https://toy-corner-server-bd.vercel.app/products?sort=${sortMethod}&limit=${quantity}`)
+        fetch(`https://toy-corner-server-bd.vercel.app/products?search=${searchText}&sort=${sortMethod}&limit=${quantity}`)
             .then(res => res.json())
             .then(data => setToys(data))
-    }, [sortMethod, quantity])
+    }, [sortMethod, quantity, searchText])
 
-    const handleSearch = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const text = form.search.value;
-        fetch(`https://toy-corner-server-bd.vercel.app/products/search/${text}`)
+    const handleSearch = () => {
+        const text = searchRef.current.value;
+        setSearchText(text);
+        fetch(`https://toy-corner-server-bd.vercel.app/products?search=${text}`)
             .then(res => res.json())
             .then(data => {
                 setToys(data);
@@ -79,16 +80,16 @@ const Toys = () => {
                     <button className='join-item btn' type='submit'>Sort</button>
                 </form>
                 <div className="divider md:divider-horizontal"></div>
-                <form onSubmit={handleSearch} className="w-full mt-5 md:mt-0 md:w-3/12 join">
+                <div className="w-full md:w-3/12 join">
                     <div>
-                        <input name='search' type='text' className="w-full input input-bordered join-item" placeholder="Toy Name" required />
+                        <input ref={searchRef} name='search' type='text' className="w-full input input-bordered join-item" placeholder="Toy Name" required />
                     </div>
                     <div>
-                        <button type='submit' className="btn join-item">Search</button>
+                        <button type='submit' onClick={handleSearch} className="btn join-item">Search</button>
                     </div>
-                </form>
+                </div>
                 <div className="divider md:divider-horizontal"></div>
-                <form onSubmit={handleLimit} className="w-full mt-5 md:mt-0 md:w-3/12 join">
+                <form onSubmit={handleLimit} className="w-full md:w-3/12 join">
                     <div>
                         <input name='limit' type='number' min="0" className="w-full input input-bordered join-item" placeholder="type quantity" required />
                     </div>

@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import TrendingSlide from "./TrendingSlide";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Hourglass } from "react-loader-spinner";
 
 
 const TrendingProducts = () => {
@@ -57,7 +58,7 @@ const TrendingProducts = () => {
 
     return (
         <div data-aos="zoom-in-up" data-aos-easing="ease-out-cubic"
-        data-aos-duration="2000" >
+            data-aos-duration="2000" >
             <br />
             <div className='text-center'>
                 <h2 className='text-3xl font-bold text-primary'>Trending Products</h2>
@@ -68,7 +69,19 @@ const TrendingProducts = () => {
                 {
                     (toys) ?
                         toys.map(toy => <TrendingSlide key={toy._id} toy={toy}></TrendingSlide>) :
-                        null
+                        <>
+                            <div className="flex items-center justify-center">
+                                <Hourglass
+                                    visible={true}
+                                    height="20"
+                                    width="20"
+                                    ariaLabel="hourglass-loading"
+                                    wrapperStyle={{}}
+                                    wrapperClass=""
+                                    colors={['navy', 'crimson']}
+                                /><p className='ml-3 text-lg font-medium text-red-700'>Loading ...</p>
+                            </div>
+                        </>
                 }
             </Slider>
         </div>
