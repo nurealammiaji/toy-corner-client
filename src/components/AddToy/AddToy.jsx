@@ -105,7 +105,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input type="number" name="price" placeholder="Type price here" className="w-full input input-bordered" />
+                        <input type="number" min="0" name="price" placeholder="Type price here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">
@@ -143,7 +143,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text">Quantity</span>
                         </label>
-                        <input type="number" name="quantity" placeholder="Type quantity here" className="w-full input input-bordered" />
+                        <input type="number" min="0" name="quantity" placeholder="Type quantity here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">
@@ -172,7 +172,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text">Reviews</span>
                         </label>
-                        <input type="number" name="reviews" placeholder="Type reviews here" className="w-full input input-bordered" />
+                        <input type="number" min="0" name="reviews" placeholder="Type reviews here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">

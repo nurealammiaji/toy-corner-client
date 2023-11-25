@@ -10,17 +10,19 @@ const Toys = () => {
 
     const [toys, setToys] = useState(null);
     const [found, setFound] = useState(null);
+    const [sortMethod, setSortMethod] = useState(null);
+    const [quantity, setQuantity] = useState(20);
 
     useEffect(() => {
-        fetch('https://toy-corner-server-bd.vercel.app/products?limit=20')
+        fetch(`https://toy-corner-server-bd.vercel.app/products?sort=${sortMethod}&limit=${quantity}`)
             .then(res => res.json())
             .then(data => setToys(data))
-    }, [])
+    }, [sortMethod, quantity])
 
     const handleSearch = (event) => {
         event.preventDefault();
         const form = event.target;
-        const text = form.text.value;
+        const text = form.search.value;
         fetch(`https://toy-corner-server-bd.vercel.app/products/search/${text}`)
             .then(res => res.json())
             .then(data => {
@@ -44,6 +46,20 @@ const Toys = () => {
             })
     }
 
+    const handleLimit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const quantity = form.limit.value;
+        setQuantity(quantity);
+    }
+
+    const handleSorting = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const sortMethod = form.sort.value;
+        setSortMethod(sortMethod);
+    }
+
     return (
         <div>
             <ToastContainer />
@@ -52,13 +68,32 @@ const Toys = () => {
                 <h2 className='w-full mx-auto text-3xl font-bold text-primary divider md:w-6/12'>All Toys</h2>
             </div>
             <br /><br />
-            <div className="text-center">
-                <form onSubmit={handleSearch} className="join">
+            <div className='justify-center gap-10 md:flex'>
+                <form onSubmit={handleSorting} className='w-full join md:w-3/12'>
+                    <select name='sort' className="w-full max-w-xs join-item select select-bordered">
+                        <option disabled selected>Select Type</option>
+                        <option>default</option>
+                        <option>ascending</option>
+                        <option>descending</option>
+                    </select>
+                    <button className='join-item btn' type='submit'>Sort</button>
+                </form>
+                <div className="divider md:divider-horizontal"></div>
+                <form onSubmit={handleSearch} className="w-full mt-5 md:mt-0 md:w-3/12 join">
                     <div>
-                        <input name='text' type='text' className="w-full input input-bordered join-item" placeholder="Toy Name" required />
+                        <input name='search' type='text' className="w-full input input-bordered join-item" placeholder="Toy Name" required />
                     </div>
                     <div>
                         <button type='submit' className="btn join-item">Search</button>
+                    </div>
+                </form>
+                <div className="divider md:divider-horizontal"></div>
+                <form onSubmit={handleLimit} className="w-full mt-5 md:mt-0 md:w-3/12 join">
+                    <div>
+                        <input name='limit' type='number' min="0" className="w-full input input-bordered join-item" placeholder="type quantity" required />
+                    </div>
+                    <div>
+                        <button type='submit' className="btn join-item">Limit</button>
                     </div>
                 </form>
             </div>

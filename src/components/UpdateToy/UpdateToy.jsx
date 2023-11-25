@@ -108,7 +108,7 @@ const UpdateToy = () => {
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input type="number" defaultValue={price.amount} name="price" placeholder="Type price here" className="w-full input input-bordered" />
+                        <input type="number" min="0" defaultValue={price.amount} name="price" placeholder="Type price here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">
@@ -146,7 +146,7 @@ const UpdateToy = () => {
                         <label className="label">
                             <span className="label-text">Quantity</span>
                         </label>
-                        <input type="text" defaultValue={quantity} name="quantity" placeholder="Type quantity here" className="w-full input input-bordered" />
+                        <input type="number" min="0" defaultValue={quantity} name="quantity" placeholder="Type quantity here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">
@@ -175,7 +175,7 @@ const UpdateToy = () => {
                         <label className="label">
                             <span className="label-text">Reviews</span>
                         </label>
-                        <input type="text" defaultValue={ratings.reviews} name="reviews" placeholder="Type reviews here" className="w-full input input-bordered" />
+                        <input type="number" min="0" defaultValue={ratings.reviews} name="reviews" placeholder="Type reviews here" className="w-full input input-bordered" />
                     </div>
                     <div className="w-full form-control">
                         <label className="label">
