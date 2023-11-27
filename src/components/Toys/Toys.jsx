@@ -72,7 +72,6 @@ const Toys = () => {
             <div className='justify-center gap-10 md:flex'>
                 <form onSubmit={handleSorting} className='w-full join md:w-3/12'>
                     <select name='sort' defaultValue={"default"} className="w-full max-w-xs join-item select select-bordered">
-                        <option disabled selected>Select Type</option>
                         <option>default</option>
                         <option>ascending</option>
                         <option>descending</option>

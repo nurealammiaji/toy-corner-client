@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
 
-    const { user, logout } = useContext(AuthContext);
+    const { user, wishlist, logout } = useContext(AuthContext);
 
     const logoutHandler = () => {
         logout()
@@ -79,7 +79,11 @@ const Navbar = () => {
                     <div className="mr-1 drawer-content tooltip" data-tip="Wishlist">
                         <label htmlFor="wishlist-drawer" className="relative drawer-button">
                             <PiHeart className="text-xl md:text-2xl" />
-                            <span className="absolute left-0 p-1 top-2 badge badge-primary badge-sm">0</span>
+                            <span className="absolute left-0 p-1 top-2 badge badge-primary badge-sm">
+                                {
+                                    (wishlist) ? wishlist.length : '0'
+                                }
+                            </span>
                         </label>
                     </div>
                     <div className="mr-3 md:mr-5 drawer-content tooltip" data-tip="Cart">

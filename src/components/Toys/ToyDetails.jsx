@@ -2,6 +2,10 @@ import { useLoaderData } from "react-router-dom";
 import { PiHeart, PiHeartFill, PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import { Rating } from '@smastrom/react-rating';
 import DynamicTitle from "../DynamicTitle/DynamicTitle";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from "react";
+import { AuthContext } from '../../providers/AuthProvider';
 
 const ToyDetails = () => {
 
@@ -9,8 +13,56 @@ const ToyDetails = () => {
 
     const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, subCategory } = toy;
 
+    const { user } = useContext(AuthContext);
+
+    const handleWishlist = () => {
+        const wish = {
+            productId: _id,
+            productName: name,
+            productPrice: {
+                amount: price.amount,
+                currency: price.currency
+            },
+            productColor: color,
+            productImage: image,
+            productManufacturer: manufacturer,
+            productMaterial: subCategory,
+            customerEmail: user.email
+        };
+        fetch('https://toy-corner-server-bd.vercel.app/wishlist', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(wish)
+        })
+        .then(result => {
+            console.log(result);
+            if (result) {
+                toast("Product added to the wishlist !!", {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            }
+        })
+        .catch(error => {
+            console.log(error.message);
+            if (error) {
+                toast.error(`${error.message}`, {
+                    position: toast.POSITION.TOP_CENTER
+                });
+            }
+        })
+    }
+
+    const handleAddToCart = () => {
+        toast("Product added to the cart !!", {
+            position: toast.POSITION.TOP_CENTER
+        });
+    }
+
     return (
         <div>
+            <ToastContainer />
             <DynamicTitle title="Toy Details"></DynamicTitle>
             <div className='text-center'>
                 <h2 className='w-full mx-auto text-3xl font-bold md:w-6/12 text-primary divider'>Toy Details</h2>
@@ -28,16 +80,16 @@ const ToyDetails = () => {
                     <p><span className="font-medium">Age Group:</span> {ageRange}</p>
                     <p><span className="font-medium">Manufacturer:</span>  {manufacturer}</p>
                     <p><span className="font-medium">Description:</span> {description}</p>
-                    <p><span className="font-medium">Ratings:</span> <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></p>
+                    <div><span className="font-medium">Ratings:</span> <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></div>
                     <br /><br />
                     <div className="justify-center hidden mx-auto card-actions md:block">
                         <div className="join">
-                            <button className="btn hover:btn-ghost btn-error join-item tooltip" data-tip="Add to Wishlist">
+                            <button onClick={handleWishlist} className="btn hover:btn-ghost btn-error join-item tooltip" data-tip="Add to Wishlist">
                                 <div className="flex items-center justify-between">
                                     <p><PiHeartFill className="mr-2 text-xl" /></p><p>Add to Wishlist</p>
                                 </div>
                             </button>
-                            <button className="btn hover:btn-ghost btn-success join-item tooltip" data-tip="Add to Cart">
+                            <button onClick={handleAddToCart} className="btn hover:btn-ghost btn-success join-item tooltip" data-tip="Add to Cart">
                                 <div className="flex items-center justify-between">
                                     <p>Add to Cart</p>
                                     <p><PiShoppingCartFill className="ml-2 text-xl" /></p>
@@ -47,8 +99,8 @@ const ToyDetails = () => {
                     </div>
                     <div className="justify-center block mx-auto card-actions md:hidden">
                         <div className="join">
-                            <button className="btn hover:btn-ghost btn-error join-item tooltip" data-tip="Add to Wishlist"><PiHeart className="text-xl" /></button>
-                            <button className="btn btn-success hover:btn-ghost join-item tooltip" data-tip="Add to Cart"><PiShoppingCart className="text-xl" /></button>
+                            <button onClick={handleWishlist} className="btn hover:btn-ghost btn-error join-item tooltip" data-tip="Add to Wishlist"><PiHeart className="text-xl" /></button>
+                            <button onClick={handleAddToCart} className="btn btn-success hover:btn-ghost join-item tooltip" data-tip="Add to Cart"><PiShoppingCart className="text-xl" /></button>
                         </div>
                     </div>
                 </div>

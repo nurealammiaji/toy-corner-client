@@ -8,8 +8,10 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
+    const [wishlist, setWishlist] = useState();
+    const [cart, setCart] = useState();
 
     const emailRegister = (email, password) => {
         setLoading(true);
@@ -60,9 +62,29 @@ const AuthProvider = ({ children }) => {
         }
     })
 
+    useEffect(() => {
+        if (user) {
+            const customer = user.email;
+            fetch(`https://toy-corner-server-bd.vercel.app/wishlist/${customer}`)
+                .then(res => res.json())
+                .then(data => setWishlist(data))
+        }
+    }, [user])
+
+    useEffect(() => {
+        if (user) {
+            const customer = user.email;
+            fetch(`https://toy-corner-server-bd.vercel.app/cart/${customer}`)
+                .then(res => res.json())
+                .then(data => setCart(data))
+        }
+    }, [user])
+
     const authInfo = {
         user,
         loading,
+        wishlist,
+        cart,
         emailLogin,
         emailRegister,
         googleLogin,
