@@ -14,7 +14,7 @@ const TrendingSlide = ({ toy, handleWishlist, handleAddToCart }) => {
                 <h2 className="card-title">{name}</h2>
                 <p className="font-medium">Price: {price.amount} {price.currency}</p>
                 <p>{description.slice(0, 25)}..</p>
-                <p>Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></p>
+                <div>Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></div>
                 <br /><br />
                 <div className="justify-center card-actions">
                     <div className="join">

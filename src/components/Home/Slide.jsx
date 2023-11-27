@@ -17,7 +17,7 @@ const Slide = ({ product, handleWishlist, handleAddToCart }) => {
                         <p className="font-semibold">{manufacturer}</p>
                         <p>{description}</p>
                         <p className="font-medium">Price: {price.amount} {price.currency}</p>
-                        <p>Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></p>
+                        <div>Ratings: <Rating style={{ maxWidth: 70, display: "inline-flex" }} value={ratings.value} readOnly /></div>
                     </div>
                     <br /><br />
                     <div className="justify-end card-actions">

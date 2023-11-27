@@ -36,19 +36,24 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
             setLoading(false);
             // Adding JWT
-            const user = currentUser.email;
-            fetch('https://toy-corner-server-bd.vercel.app/jwt/', {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify({user})
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    localStorage.setItem('toyCorner-user-token', data.token);
+            if (currentUser) {
+                const user = currentUser.email;
+                fetch('https://toy-corner-server-bd.vercel.app/jwt/', {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({ user })
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem('toyCorner-user-token', data.token);
+                    })
+            }
+            else {
+                return;
+            }
         })
         return () => {
             return unsubscribe();
