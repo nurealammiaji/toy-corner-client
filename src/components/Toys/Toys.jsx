@@ -10,9 +10,9 @@ const Toys = () => {
 
     const [toys, setToys] = useState(null);
     const [found, setFound] = useState(null);
-    const [sortMethod, setSortMethod] = useState(null);
+    const [sortMethod, setSortMethod] = useState("");
     const [quantity, setQuantity] = useState(20);
-    const [searchText, setSearchText] = useState();
+    const [searchText, setSearchText] = useState("");
     const searchRef = useRef();
 
     useEffect(() => {

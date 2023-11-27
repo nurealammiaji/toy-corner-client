@@ -5,13 +5,20 @@ import TrendingSlide from "./TrendingSlide";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Hourglass } from "react-loader-spinner";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 
 const TrendingProducts = () => {
 
     AOS.init();
 
+    const { user } = useContext(AuthContext);
     const [toys, setToys] = useState(null);
+    const navigate = useNavigate();
 
     const settings = {
         infinite: true,
@@ -51,39 +58,70 @@ const TrendingProducts = () => {
     };
 
     useEffect(() => {
-        fetch('https://toy-corner-server-bd.vercel.app/products?limit=20')
+        fetch('https://toy-corner-server-bd.vercel.app/products')
             .then(res => res.json())
             .then(data => setToys(data))
     }, [])
 
+    const handleWishlist = () => {
+        if (!user) {
+            toast("Please Login First !!", {
+                position: toast.POSITION.TOP_CENTER
+            });
+            navigate("/login", { replace: true })
+        }
+        else {
+            toast("Product added to the wishlist !!", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    }
+
+    const handleAddToCart = () => {
+        if (!user) {
+            toast("Please Login First !!", {
+                position: toast.POSITION.TOP_CENTER
+            });
+            navigate("/login", { replace: true })
+        }
+        else {
+            toast("Product added to the cart !!", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    }
+
     return (
-        <div data-aos="zoom-in-up" data-aos-easing="ease-out-cubic"
-            data-aos-duration="2000" >
-            <br />
-            <div className='text-center'>
-                <h2 className='text-3xl font-bold text-primary'>Trending Products</h2>
-                <p className='mt-3 text-lg'>Choose your product from trending products</p>
+        <div>
+            <ToastContainer />
+            <div data-aos="zoom-in-up" data-aos-easing="ease-out-cubic"
+                data-aos-duration="2000" >
+                <br />
+                <div className='text-center'>
+                    <h2 className='text-3xl font-bold text-primary'>Trending Products</h2>
+                    <p className='mt-3 text-lg'>Choose your product from trending products</p>
+                </div>
+                <br /><br />
+                <Slider {...settings}>
+                    {
+                        (toys) ?
+                            toys.map(toy => <TrendingSlide key={toy._id} toy={toy} handleAddToCart={handleAddToCart} handleWishlist={handleWishlist} ></TrendingSlide>) :
+                            <>
+                                <div className="flex items-center justify-center">
+                                    <Hourglass
+                                        visible={true}
+                                        height="20"
+                                        width="20"
+                                        ariaLabel="hourglass-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        colors={['navy', 'crimson']}
+                                    /><p className='ml-3 text-lg font-medium text-red-700'>Loading ...</p>
+                                </div>
+                            </>
+                    }
+                </Slider>
             </div>
-            <br /><br />
-            <Slider {...settings}>
-                {
-                    (toys) ?
-                        toys.map(toy => <TrendingSlide key={toy._id} toy={toy}></TrendingSlide>) :
-                        <>
-                            <div className="flex items-center justify-center">
-                                <Hourglass
-                                    visible={true}
-                                    height="20"
-                                    width="20"
-                                    ariaLabel="hourglass-loading"
-                                    wrapperStyle={{}}
-                                    wrapperClass=""
-                                    colors={['navy', 'crimson']}
-                                /><p className='ml-3 text-lg font-medium text-red-700'>Loading ...</p>
-                            </div>
-                        </>
-                }
-            </Slider>
         </div>
     );
 };
