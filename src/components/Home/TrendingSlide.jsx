@@ -1,14 +1,129 @@
 import { Rating } from "@smastrom/react-rating";
 import { PiEye, PiHeart, PiShoppingCart } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-const TrendingSlide = ({ toy, handleWishlist, handleAddToCart }) => {
+const TrendingSlide = ({ toy }) => {
 
-    const { _id, name, price, image, description, ratings } = toy;
+    const { user, reFetch } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const { _id, name, price, image, description, ratings, color, subCategory, manufacturer } = toy;
+
+    const handleWishlist = () => {
+        if (!user) {
+            toast("Please Login First !!", {
+                position: toast.POSITION.TOP_CENTER
+            });
+            navigate("/login", { replace: true })
+        }
+        else {
+            const wish = {
+                productId: _id,
+                productName: name,
+                productPrice: {
+                    amount: price.amount,
+                    currency: price.currency
+                },
+                productColor: color,
+                productImage: image,
+                productManufacturer: manufacturer,
+                productMaterial: subCategory,
+                customerEmail: user.email
+            };
+            fetch('https://toy-corner-server-bd.vercel.app/wishlist', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(wish)
+            })
+                .then(result => {
+                    console.log(result);
+                    if (result) {
+                        Swal.fire({
+                            title: "Added !!",
+                            text: "Toy added to the wishlist",
+                            icon: "success"
+                        });
+                        reFetch();
+                    }
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    if (error) {
+                        Swal.fire({
+                            title: "Can't Add !!",
+                            text: "Toy can't add to the wishlist",
+                            icon: "error"
+                        });
+                    }
+                })
+        }
+    }
+
+    const handleAddToCart = () => {
+        if (!user) {
+            toast("Please Login First !!", {
+                position: toast.POSITION.TOP_CENTER
+            });
+            navigate("/login", { replace: true })
+        }
+        else {
+            const cart = {
+                productId: _id,
+                productName: name,
+                productPrice: {
+                    amount: price.amount,
+                    currency: price.currency
+                },
+                productColor: color,
+                productImage: image,
+                productManufacturer: manufacturer,
+                productMaterial: subCategory,
+                customerEmail: user.email
+            };
+            fetch('https://toy-corner-server-bd.vercel.app/cart', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(cart)
+            })
+                .then(result => {
+                    console.log(result);
+                    if (result) {
+                        Swal.fire({
+                            title: "Added !!",
+                            text: "Toy added to the cart",
+                            icon: "success"
+                        });
+                        reFetch();
+                    }
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    if (error) {
+                        Swal.fire({
+                            title: "Can't Add !!",
+                            text: "Toy can't add to the cart",
+                            icon: "error"
+                        });
+                    }
+                })
+        }
+    }
+
 
     return (
         <div className="w-11/12 border card card-compact bg-base-100">
+            <ToastContainer />
             <figure><img src={image} className="h-[300px] w-full" alt="Toy" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>

@@ -62,12 +62,48 @@ const ToyDetails = () => {
     }
 
     const handleAddToCart = () => {
-        Swal.fire({
-            title: "Added !!",
-            text: "Toy added to the cart",
-            icon: "success"
-        });
-        navigate("/cart", { replace: true });
+        const cart = {
+            productId: _id,
+            productName: name,
+            productPrice: {
+                amount: price.amount,
+                currency: price.currency
+            },
+            productColor: color,
+            productImage: image,
+            productManufacturer: manufacturer,
+            productMaterial: subCategory,
+            customerEmail: user.email
+        };
+        fetch('https://toy-corner-server-bd.vercel.app/cart', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(cart)
+        })
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    Swal.fire({
+                        title: "Added !!",
+                        text: "Toy added to the cart",
+                        icon: "success"
+                    });
+                    reFetch();
+                    navigate("/cart", { replace: true });
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+                if (error) {
+                    Swal.fire({
+                        title: "Can't Add !!",
+                        text: "Toy can't add to the cart",
+                        icon: "error"
+                    });
+                }
+            })
     }
 
     return (

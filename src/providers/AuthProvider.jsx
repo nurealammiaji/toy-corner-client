@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
+
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -90,12 +93,51 @@ const AuthProvider = ({ children }) => {
         }
     }, [user])
 
+    const handleDeleteWish = (_id) => {
+        fetch(`https://toy-corner-server-bd.vercel.app/wishlist/items/${_id}`, {
+            method: "DELETE"
+        })
+            .then(result => {
+                if (result) {
+                    const remaining = wishlist.filter(item => item._id !== _id);
+                    setWishlist(remaining);
+                    reFetch();
+                    Swal.fire({
+                        title: "Deleted !",
+                        text: "Wishlist item deleted successfully",
+                        icon: "success"
+                    });
+                }
+            })
+            .then(error => console.log(error))
+    }
+
+    const handleDeleteCart = (_id) => {
+        fetch(`https://toy-corner-server-bd.vercel.app/cart/items/${_id}`, {
+            method: "DELETE"
+        })
+            .then(result => {
+                if (result) {
+                    const remaining = cart.filter(item => item._id !== _id);
+                    setCart(remaining);
+                    Swal.fire({
+                        title: "Deleted !",
+                        text: "Cart item deleted successfully",
+                        icon: "success"
+                    });
+                }
+            })
+            .then(error => console.log(error))
+    }
+
     const authInfo = {
         user,
         loading,
         wishlist,
         cart,
         reFetch,
+        handleDeleteWish,
+        handleDeleteCart,
         emailLogin,
         emailRegister,
         googleLogin,

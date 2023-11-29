@@ -4,22 +4,30 @@ import DynamicTitle from '../DynamicTitle/DynamicTitle';
 import { AuthContext } from '../../providers/AuthProvider';
 import Wish from './Wish';
 import { Hourglass } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import 'sweetalert2/src/sweetalert2.scss';
 
 const Wishlist = () => {
 
-    const { user } = useContext(AuthContext);
-    const [wishlist, setWishlist] = useState([]);
+    const { user, wishlist, reFetch } = useContext(AuthContext);
 
-    useEffect(() => {
-        if (user) {
-            const customer = user.email;
-            fetch(`https://toy-corner-server-bd.vercel.app/wishlist/${customer}`)
-                .then(res => res.json())
-                .then(data => {
-                    setWishlist(data);
-                })
-        }
-    }, [user])
+    const handleDeleteWish = (_id) => {
+        fetch(`https://toy-corner-server-bd.vercel.app/wishlist/items/${_id}`, {
+            method: "DELETE"
+        })
+            .then(result => {
+                if (result) {
+                    reFetch();
+                    Swal.fire({
+                        title: "Deleted !",
+                        text: "Wishlist item deleted successfully",
+                        icon: "success"
+                    });
+                }
+            })
+            .then(error => console.log(error))
+    }
 
     return (
         <div>
@@ -46,7 +54,7 @@ const Wishlist = () => {
                             {/* row */}
                             {
                                 (user && wishlist) ?
-                                    wishlist.map((wish, index) => <Wish key={wish._id} serial={index + 1} wish={wish}></Wish>) :
+                                    wishlist.map((wish, index) => <Wish key={wish._id} serial={index + 1} wish={wish} handleDeleteWish={handleDeleteWish} ></Wish>) :
                                     <>
                                         <div className="flex items-center justify-center">
                                             <Hourglass

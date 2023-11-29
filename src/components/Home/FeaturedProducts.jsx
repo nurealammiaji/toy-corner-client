@@ -2,22 +2,17 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slide from "./Slide";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Hourglass } from "react-loader-spinner";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { AuthContext } from '../../providers/AuthProvider';
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const FeaturedProducts = () => {
 
     AOS.init();
 
-    const { user } = useContext(AuthContext);
     const [products, setProducts] = useState(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('https://toy-corner-server-bd.vercel.app/products?limit=10')
@@ -38,37 +33,8 @@ const FeaturedProducts = () => {
         swipeToSlide: true,
     };
 
-    const handleWishlist = () => {
-        if (!user) {
-            toast("Please Login First !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-            navigate("/login", { replace: true })
-        }
-        else {
-            toast("Product added to the wishlist !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-        }
-    }
-
-    const handleAddToCart = () => {
-        if (!user) {
-            toast("Please Login First !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-            navigate("/login", { replace: true })
-        }
-        else {
-            toast("Product added to the cart !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-        }
-    }
-
     return (
         <div>
-            <ToastContainer />
             <div data-aos="flip-right" data-aos-easing="ease-out-cubic"
                 data-aos-duration="2000" >
                 <br />
@@ -80,7 +46,7 @@ const FeaturedProducts = () => {
                 <Slider {...settings}>
                     {
                         (products) ?
-                            products.map(product => <Slide key={product._id} product={product} handleWishlist={handleWishlist} handleAddToCart={handleAddToCart} ></Slide>) :
+                            products.map(product => <Slide key={product._id} product={product}></Slide>) :
                             <>
                                 <div className="flex items-center justify-center">
                                     <Hourglass

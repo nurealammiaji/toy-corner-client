@@ -5,7 +5,7 @@ import WishItem from "./WishItem";
 
 const WishlistDrawer = () => {
 
-    const { user, wishlist } = useContext(AuthContext);
+    const { user, wishlist, handleDeleteWish } = useContext(AuthContext);
 
     return (
         <div>
@@ -13,12 +13,12 @@ const WishlistDrawer = () => {
                 <input id="wishlist-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-side">
                     <label htmlFor="wishlist-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <div className="w-40 min-h-full p-4 menu md:w-80 bg-base-200 text-base-content">
+                    <div className="w-6/12 min-h-full p-4 menu md:w-80 bg-base-200 text-base-content">
                         {/* Sidebar content here */}
                         <ul>
                             {
                                 (user && wishlist) ?
-                                    wishlist.map(wishItem => <WishItem key={wishItem._id} wishItem={wishItem}></WishItem>) :
+                                    wishlist.map(wishItem => <WishItem key={wishItem._id} wishItem={wishItem} handleDeleteWish={handleDeleteWish} ></WishItem>) :
                                     <li className="font-semibold text-center text-red-600">Wishlist is empty !!</li>
                             }
                         </ul>

@@ -5,21 +5,15 @@ import TabData from './TabData';
 import { Hourglass } from 'react-loader-spinner';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useContext } from 'react';
-import { AuthContext } from '../../providers/AuthProvider';
+
 
 const ProductTabs = () => {
 
     AOS.init();
 
-    const { user } = useContext(AuthContext);
     const [tabIndex, setTabIndex] = useState(0);
     const [products, setProducts] = useState(null);
     const [category, setCategory] = useState("Plastic");
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`https://toy-corner-server-bd.vercel.app/products/categories/${category}`)
@@ -27,41 +21,13 @@ const ProductTabs = () => {
             .then(data => setProducts(data))
     }, [category])
 
-    const handleWishlist = () => {
-        if (!user) {
-            toast("Please Login First !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-            navigate("/login", { replace: true })
-        }
-        else {
-            toast("Product added to the wishlist !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-        }
-    }
-
-    const handleAddToCart = () => {
-        if (!user) {
-            toast("Please Login First !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-            navigate("/login", { replace: true })
-        }
-        else {
-            toast("Product added to the cart !!", {
-                position: toast.POSITION.TOP_CENTER
-            });
-        }
-    }
-
     const tabPanel = <>
         <TabPanel>
             {
                 (products) ?
                     <div className='grid gap-5 md:grid-cols-3'>
                         {
-                            products.map(product => <TabData key={product._id} product={product} handleAddToCart={handleAddToCart} handleWishlist={handleWishlist} ></TabData>)
+                            products.map(product => <TabData key={product._id} product={product}></TabData>)
                         }
                     </div> :
                     <>
@@ -84,7 +50,6 @@ const ProductTabs = () => {
 
     return (
         <div>
-            <ToastContainer />
             <div data-aos="zoom-out" data-aos-easing="ease-out-cubic"
                 data-aos-duration="2000" >
                 <br />

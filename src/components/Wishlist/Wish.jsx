@@ -1,10 +1,10 @@
-import { PiEye } from "react-icons/pi";
+import { PiEye, PiShoppingCart, PiTrash } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
 
-const Wish = ({ wish, serial }) => {
+const Wish = ({ wish, serial, handleDeleteWish }) => {
 
-    const { productId, productName, productPrice, productColor, productImage, productManufacturer, productMaterial, customerEmail } = wish;
+    const { _id, productId, productName, productPrice, productColor, productImage, productManufacturer, productMaterial, customerEmail } = wish;
 
     return (
         <tr>
@@ -37,9 +37,13 @@ const Wish = ({ wish, serial }) => {
                 }
             </td>
             <td>
-                <Link to={`/toys/${productId}`}>
-                    <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View Details"><PiEye className="text-xl" /></button>
-                </Link>
+                <div className="join">
+                    <Link to={`/toys/${productId}`}>
+                        <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View Details"><PiEye className="text-xl" /></button>
+                    </Link>
+                    <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Add to Cart"><PiShoppingCart className="text-xl" /></button>
+                    <button onClick={() => handleDeleteWish(_id)} className="btn btn-sm hover:btn-ghost btn-error join-item tooltip" data-tip="Delete"><PiTrash className="text-xl" /></button>
+                </div>
             </td>
         </tr>
     );
