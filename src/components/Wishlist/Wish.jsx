@@ -19,19 +19,19 @@ const Wish = ({ wish, serial }) => {
             <td>
                 <div>
                     <div className="font-bold">{productName}</div>
-                    <div className="text-sm opacity-50">Price: {productPrice} </div>
+                    <div className="text-sm opacity-50">Price: {productPrice.amount} {productPrice.currency}</div>
                 </div>
             </td>
             <td>
-                Color: {productColor}
+                Color: <span className="font-medium">{productColor}</span>
                 <br />
-                <span className="mr-1 font-light">Sub-Category:</span>
+                <span className="mr-1 font-light">Material:</span>
                 <span className="badge badge-ghost badge-sm">{productMaterial}</span>
             </td>
             <td>
-                {productManufacturer}
+                Manufacturer: <span className="font-medium">{productManufacturer}</span>
                 <br />
-                <span className="mr-1 font-light">Customer: </span>
+                <span className="mr-1 font-light">Customer:</span>
                 {
                     <span className="badge badge-ghost badge-sm">{customerEmail}</span>
                 }

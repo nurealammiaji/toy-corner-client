@@ -81,7 +81,7 @@ const Navbar = () => {
                             <PiHeart className="text-xl md:text-2xl" />
                             <span className="absolute left-0 p-1 top-2 badge badge-primary badge-sm">
                                 {
-                                    (wishlist) ? wishlist.length : '0'
+                                    (user && wishlist) ? wishlist.length : '0'
                                 }
                             </span>
                         </label>

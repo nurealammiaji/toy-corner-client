@@ -17,7 +17,6 @@ import Wishlist from '../components/Wishlist/Wishlist';
 import Cart from '../components/Cart/Cart';
 import UpdateToy from '../components/UpdateToy/UpdateToy';
 
-
 const Routes = createBrowserRouter([
     {
         path: "/",

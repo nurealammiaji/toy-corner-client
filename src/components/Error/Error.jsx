@@ -6,7 +6,7 @@ import DynamicTitle from '../DynamicTitle/DynamicTitle';
 const Error = () => {
 
     const error = useRouteError();
-    console.log(error);
+    console.error(error);
 
     return (
         <div className="text-center">

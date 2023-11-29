@@ -10,8 +10,8 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
-    const [wishlist, setWishlist] = useState();
-    const [cart, setCart] = useState();
+    const [wishlist, setWishlist] = useState([]);
+    const [cart, setCart] = useState([]);
 
     const emailRegister = (email, password) => {
         setLoading(true);
@@ -30,6 +30,12 @@ const AuthProvider = ({ children }) => {
 
     const logout = () => {
         return signOut(auth)
+    }
+
+    const reFetch = () => {
+        fetch(`https://toy-corner-server-bd.vercel.app/wishlist/${user.email}`)
+            .then(res => res.json())
+            .then(data => setWishlist(data))
     }
 
     useEffect(() => {
@@ -67,7 +73,9 @@ const AuthProvider = ({ children }) => {
             const customer = user.email;
             fetch(`https://toy-corner-server-bd.vercel.app/wishlist/${customer}`)
                 .then(res => res.json())
-                .then(data => setWishlist(data))
+                .then(data => {
+                    setWishlist(data);
+                })
         }
     }, [user])
 
@@ -76,7 +84,9 @@ const AuthProvider = ({ children }) => {
             const customer = user.email;
             fetch(`https://toy-corner-server-bd.vercel.app/cart/${customer}`)
                 .then(res => res.json())
-                .then(data => setCart(data))
+                .then(data => {
+                    setCart(data);
+                })
         }
     }, [user])
 
@@ -85,6 +95,7 @@ const AuthProvider = ({ children }) => {
         loading,
         wishlist,
         cart,
+        reFetch,
         emailLogin,
         emailRegister,
         googleLogin,

@@ -1,11 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { PiHeart, PiHeartFill, PiShoppingCart, PiShoppingCartFill } from "react-icons/pi";
 import { Rating } from '@smastrom/react-rating';
 import DynamicTitle from "../DynamicTitle/DynamicTitle";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from "react";
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const ToyDetails = () => {
 
@@ -13,7 +13,8 @@ const ToyDetails = () => {
 
     const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, subCategory } = toy;
 
-    const { user } = useContext(AuthContext);
+    const { user, reFetch } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleWishlist = () => {
         const wish = {
@@ -36,33 +37,41 @@ const ToyDetails = () => {
             },
             body: JSON.stringify(wish)
         })
-        .then(result => {
-            console.log(result);
-            if (result) {
-                toast("Product added to the wishlist !!", {
-                    position: toast.POSITION.TOP_CENTER
-                });
-            }
-        })
-        .catch(error => {
-            console.log(error.message);
-            if (error) {
-                toast.error(`${error.message}`, {
-                    position: toast.POSITION.TOP_CENTER
-                });
-            }
-        })
+            .then(result => {
+                console.log(result);
+                if (result) {
+                    Swal.fire({
+                        title: "Added !!",
+                        text: "Toy added to the wishlist",
+                        icon: "success"
+                    });
+                    reFetch();
+                    navigate("/wishlist", { replace: true });
+                }
+            })
+            .catch(error => {
+                console.log(error.message);
+                if (error) {
+                    Swal.fire({
+                        title: "Can't Add !!",
+                        text: "Toy can't add to the wishlist",
+                        icon: "error"
+                    });
+                }
+            })
     }
 
     const handleAddToCart = () => {
-        toast("Product added to the cart !!", {
-            position: toast.POSITION.TOP_CENTER
+        Swal.fire({
+            title: "Added !!",
+            text: "Toy added to the cart",
+            icon: "success"
         });
+        navigate("/cart", { replace: true });
     }
 
     return (
         <div>
-            <ToastContainer />
             <DynamicTitle title="Toy Details"></DynamicTitle>
             <div className='text-center'>
                 <h2 className='w-full mx-auto text-3xl font-bold md:w-6/12 text-primary divider'>Toy Details</h2>
