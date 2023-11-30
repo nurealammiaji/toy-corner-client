@@ -1,16 +1,15 @@
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
 import { AuthContext } from '../../providers/AuthProvider';
 import Wish from './Wish';
 import { Hourglass } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
 
 const Wishlist = () => {
 
-    const { user, wishlist, reFetch } = useContext(AuthContext);
+    const { user, wishlist, reFetchWishlist } = useContext(AuthContext);
 
     const handleDeleteWish = (_id) => {
         fetch(`https://toy-corner-server-bd.vercel.app/wishlist/items/${_id}`, {
@@ -18,7 +17,7 @@ const Wishlist = () => {
         })
             .then(result => {
                 if (result) {
-                    reFetch();
+                    reFetchWishlist();
                     Swal.fire({
                         title: "Deleted !",
                         text: "Wishlist item deleted successfully",

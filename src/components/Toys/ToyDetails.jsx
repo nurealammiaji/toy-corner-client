@@ -13,7 +13,7 @@ const ToyDetails = () => {
 
     const { _id, name, manufacturer, price, image, description, ratings, ageRange, color, availability, subCategory } = toy;
 
-    const { user, reFetch } = useContext(AuthContext);
+    const { user, reFetchWishlist, reFetchCart } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleWishlist = () => {
@@ -45,7 +45,7 @@ const ToyDetails = () => {
                         text: "Toy added to the wishlist",
                         icon: "success"
                     });
-                    reFetch();
+                    reFetchWishlist();
                     navigate("/wishlist", { replace: true });
                 }
             })
@@ -90,7 +90,7 @@ const ToyDetails = () => {
                         text: "Toy added to the cart",
                         icon: "success"
                     });
-                    reFetch();
+                    reFetchCart();
                     navigate("/cart", { replace: true });
                 }
             })

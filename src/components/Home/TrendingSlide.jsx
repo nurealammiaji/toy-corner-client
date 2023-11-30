@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const TrendingSlide = ({ toy }) => {
 
-    const { user, reFetch } = useContext(AuthContext);
+    const { user, reFetchWishlist, reFetchCart } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const { _id, name, price, image, description, ratings, color, subCategory, manufacturer } = toy;
@@ -52,7 +52,7 @@ const TrendingSlide = ({ toy }) => {
                             text: "Toy added to the wishlist",
                             icon: "success"
                         });
-                        reFetch();
+                        reFetchWishlist();
                     }
                 })
                 .catch(error => {
@@ -104,7 +104,7 @@ const TrendingSlide = ({ toy }) => {
                             text: "Toy added to the cart",
                             icon: "success"
                         });
-                        reFetch();
+                        reFetchCart();
                     }
                 })
                 .catch(error => {

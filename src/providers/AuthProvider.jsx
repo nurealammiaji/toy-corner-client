@@ -35,10 +35,16 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    const reFetch = () => {
+    const reFetchWishlist = () => {
         fetch(`https://toy-corner-server-bd.vercel.app/wishlist/${user.email}`)
             .then(res => res.json())
             .then(data => setWishlist(data))
+    }
+
+    const reFetchCart = () => {
+        fetch(`https://toy-corner-server-bd.vercel.app/cart/${user.email}`)
+            .then(res => res.json())
+            .then(data => setCart(data))
     }
 
     useEffect(() => {
@@ -101,7 +107,7 @@ const AuthProvider = ({ children }) => {
                 if (result) {
                     const remaining = wishlist.filter(item => item._id !== _id);
                     setWishlist(remaining);
-                    reFetch();
+                    reFetchWishlist();
                     Swal.fire({
                         title: "Deleted !",
                         text: "Wishlist item deleted successfully",
@@ -120,6 +126,7 @@ const AuthProvider = ({ children }) => {
                 if (result) {
                     const remaining = cart.filter(item => item._id !== _id);
                     setCart(remaining);
+                    reFetchCart();
                     Swal.fire({
                         title: "Deleted !",
                         text: "Cart item deleted successfully",
@@ -135,7 +142,8 @@ const AuthProvider = ({ children }) => {
         loading,
         wishlist,
         cart,
-        reFetch,
+        reFetchWishlist,
+        reFetchCart,
         handleDeleteWish,
         handleDeleteCart,
         emailLogin,

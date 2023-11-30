@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const TabData = ({ product }) => {
 
-    const { user, reFetch } = useContext(AuthContext);
+    const { user, reFetchWishlist, reFetchCart } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const { _id, name, manufacturer, price, image, description, ratings, color, subCategory } = product;
@@ -51,7 +51,7 @@ const TabData = ({ product }) => {
                             text: "Toy added to the wishlist",
                             icon: "success"
                         });
-                        reFetch();
+                        reFetchWishlist();
                     }
                 })
                 .catch(error => {
@@ -103,7 +103,7 @@ const TabData = ({ product }) => {
                             text: "Toy added to the cart",
                             icon: "success"
                         });
-                        reFetch();
+                        reFetchCart();
                     }
                 })
                 .catch(error => {
