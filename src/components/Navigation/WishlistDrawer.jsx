@@ -13,7 +13,7 @@ const WishlistDrawer = () => {
                 <input id="wishlist-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-side">
                     <label htmlFor="wishlist-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <div className="w-6/12 min-h-full p-4 menu md:w-80 bg-base-200 text-base-content">
+                    <div className="w-6/12 min-h-full p-4 menu md:w-4/12 bg-base-200 text-base-content">
                         {/* Sidebar content here */}
                         <ul>
                             {
