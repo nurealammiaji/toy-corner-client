@@ -1,6 +1,12 @@
+import { useLoaderData } from 'react-router-dom';
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const Checkout = () => {
+
+    const checkout = useLoaderData();
+    
+    console.log(checkout);
+
     return (
         <div>
             <DynamicTitle title="Checkout"></DynamicTitle>

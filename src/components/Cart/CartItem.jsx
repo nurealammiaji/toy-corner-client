@@ -1,4 +1,4 @@
-import { PiArrowCircleRight, PiArrowSquareRight, PiCheckSquare, PiCheckSquareBold, PiCheckSquareOffset, PiEye, PiShoppingCart, PiTrash } from "react-icons/pi";
+import { PiCheckSquare, PiEye, PiTrash } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
 const CartItem = ({ item, serial, handleDeleteCart }) => {
@@ -41,7 +41,9 @@ const CartItem = ({ item, serial, handleDeleteCart }) => {
                         <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View Details"><PiEye className="text-xl" /></button>
                     </Link>
                     <button onClick={() => handleDeleteCart(_id)} className="btn btn-sm hover:btn-ghost btn-error join-item tooltip" data-tip="Delete"><PiTrash className="text-xl" /></button>
-                    <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Checkout"><PiArrowSquareRight className="text-xl" /></button>
+                    <Link to={`/checkout/${_id}`}>
+                        <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Checkout"><PiCheckSquare className="text-xl" /></button>
+                    </Link>
                 </div>
             </td>
         </tr>

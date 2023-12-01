@@ -58,8 +58,9 @@ const Routes = createBrowserRouter([
                 element: <Private><Cart></Cart></Private>
             },
             {
-                path: "checkout",
-                element: <Private><Checkout></Checkout></Private>
+                path: "checkout/:id",
+                element: <Private><Checkout></Checkout></Private>,
+                loader: ({params}) => fetch(`https://toy-corner-server-bd.vercel.app/cart/items/${params.id}`)
             },
             {
                 path: "blog",

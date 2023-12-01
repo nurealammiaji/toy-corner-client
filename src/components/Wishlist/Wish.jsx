@@ -41,8 +41,8 @@ const Wish = ({ wish, serial, handleDeleteWish }) => {
                     <Link to={`/toys/${productId}`}>
                         <button className="btn btn-sm hover:btn-ghost btn-info join-item tooltip" data-tip="View Details"><PiEye className="text-xl" /></button>
                     </Link>
-                    <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Add to Cart"><PiShoppingCart className="text-xl" /></button>
                     <button onClick={() => handleDeleteWish(_id)} className="btn btn-sm hover:btn-ghost btn-error join-item tooltip" data-tip="Delete"><PiTrash className="text-xl" /></button>
+                    <button className="btn btn-sm btn-success hover:btn-ghost join-item tooltip" data-tip="Add to Cart"><PiShoppingCart className="text-xl" /></button>
                 </div>
             </td>
         </tr>
