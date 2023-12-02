@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import WishItem from "./WishItem";
 import { PiXBold } from "react-icons/pi";
@@ -7,6 +7,7 @@ import { PiXBold } from "react-icons/pi";
 const WishlistDrawer = () => {
 
     const { user, wishlist, handleDeleteWish } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -24,7 +25,7 @@ const WishlistDrawer = () => {
                                     <li className="font-semibold text-center text-red-600">Wishlist is empty !!</li>
                             }
                         </ul>
-                        <Link to="/wishlist"><button className="w-full mt-5 btn btn-outline btn-primary">Go to Wishlist</button></Link>
+                        <label onClick={() => navigate("/wishlist")} htmlFor="wishlist-drawer" aria-label="close sidebar" className="w-full mt-5 btn btn-outline btn-primary">Go to Wishlist</label>
                     </div>
                 </div>
             </div>
