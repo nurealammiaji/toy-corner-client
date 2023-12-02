@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import CartItem from "./CartItem";
+import { PiXBold } from "react-icons/pi";
 
 const CartDrawer = () => {
 
@@ -15,7 +16,8 @@ const CartDrawer = () => {
                 <label htmlFor="cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                     <div className="w-6/12 min-h-full p-4 menu md:w-4/12 bg-base-200 text-base-content">
                         {/* Sidebar content here */}
-                        <ul>
+                        <label htmlFor="cart-drawer" aria-label="close sidebar" className="btn btn-sm btn-error absolute top-0 left-0 rounded-none"><PiXBold className="text-lg" /></label>
+                        <ul className="mt-8">
                             {
                                 (user && cart) ?
                                     cart.map(cartItem => <CartItem key={cartItem._id} cartItem={cartItem} handleDeleteCart={handleDeleteCart} ></CartItem>) :
