@@ -11,7 +11,7 @@ const CartDrawer = () => {
 
     return (
         <div>
-            <div className="drawer drawer-end">
+            <div className="drawer drawer-end z-20">
                 <input id="cart-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-side">
                     <label htmlFor="cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>

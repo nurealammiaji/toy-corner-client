@@ -14,12 +14,9 @@ const Checkout = () => {
     const { user } = useContext(AuthContext);
 
     const today = new Date();
-    const date = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const hour = today.getHours();
-    const minute = today.getMinutes();
-    const second = today.getSeconds();
+    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date+' , '+time;
 
     return (
         <div>
@@ -28,8 +25,8 @@ const Checkout = () => {
                 <h2 className='w-full mx-auto text-3xl font-bold md:w-6/12 text-primary divider'>Checkout</h2>
             </div>
             <br /><br />
-            <div className="shadow-lg card lg:card-side bg-base-100 md:w-[700px] md:mx-auto rounded-b-none">
-                <figure><img src={productImage} className="md:h-[300px] w-full" alt="Album" /></figure>
+            <div className="shadow-lg card lg:card-side bg-base-100 md:w-9/12 md:mx-auto rounded-b-none">
+                <figure><img src={productImage} className="md:h-[350px] w-full" alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="text-2xl card-title">{productName}</h2>
                     <br />
@@ -49,7 +46,7 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-            <form className="w-full p-10 mx-auto card md:w-[700px] bg-base-200 rounded-t-none">
+            <form className="w-full p-10 mx-auto card md:w-9/12 bg-base-200 rounded-t-none">
                 <div className="grid gap-5 md:grid-cols-2">
                     <div className="w-full form-control">
                         <label className="label">
@@ -73,7 +70,7 @@ const Checkout = () => {
                         <label className="label">
                             <span className="label-text">Date / Time</span>
                         </label>
-                        <input type="text" defaultValue={`${date}-${month}-${year}, ${hour}:${minute}:${second}`} name="orderDate" placeholder="select date here" className="w-full input input-bordered" />
+                        <input type="text" defaultValue={dateTime} name="orderDate" placeholder="select date here" className="w-full input input-bordered" />
                     </div>
                 </div>
                 <div className="w-full mt-5 form-control">

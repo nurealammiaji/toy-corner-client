@@ -6,6 +6,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Navbar = () => {
 
     const { user, wishlist, cart, logout } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const Navbar = () => {
     return (
         <div>
             <ToastContainer />
-            <div className="shadow navbar">
+            <div className="md:px-14 shadow navbar z-10 bg-white fixed left-0 top-0">
                 <div className="navbar-start">
                     <details className="dropdown">
                         <summary tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -90,7 +91,7 @@ const Navbar = () => {
                         <label htmlFor="cart-drawer" className="relative drawer-button">
                             <PiShoppingCart className="text-xl md:text-2xl" />
                             <span className="absolute left-0 p-1 top-2 badge badge-primary badge-sm">
-                            {
+                                {
                                     (user && cart) ? cart.length : '0'
                                 }
                             </span>
