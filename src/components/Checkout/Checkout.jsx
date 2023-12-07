@@ -14,9 +14,9 @@ const Checkout = () => {
     const { user } = useContext(AuthContext);
 
     const today = new Date();
-    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
     const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const dateTime = date+' , '+time;
+    const dateTime = date + ', ' + time;
 
     return (
         <div>
@@ -25,12 +25,12 @@ const Checkout = () => {
                 <h2 className='w-full mx-auto text-3xl font-bold md:w-6/12 text-primary divider'>Checkout</h2>
             </div>
             <br /><br />
-            <div className="shadow-lg card lg:card-side bg-base-100 md:w-9/12 md:mx-auto rounded-b-none">
+            <div className="rounded-b-none shadow-lg card lg:card-side bg-base-100 md:w-9/12 md:mx-auto">
                 <figure><img src={productImage} className="md:h-[350px] w-full" alt="Album" /></figure>
                 <div className="card-body">
                     <h2 className="text-2xl card-title">{productName}</h2>
                     <br />
-                    <p className="font-semibold mb-3 italic">{productManufacturer}</p>
+                    <p className="mb-3 italic font-semibold">{productManufacturer}</p>
                     <div className="[&>*]:mb-2">
                         <p><span className='font-medium'>Color:</span> {productColor}</p>
                         <p><span className='font-medium'>Material:</span> {productMaterial}</p>
@@ -46,7 +46,7 @@ const Checkout = () => {
                     </div>
                 </div>
             </div>
-            <form className="w-full p-10 mx-auto card md:w-9/12 bg-base-200 rounded-t-none">
+            <form className="w-full p-10 mx-auto rounded-t-none card md:w-9/12 bg-base-200">
                 <div className="grid gap-5 md:grid-cols-2">
                     <div className="w-full form-control">
                         <label className="label">
@@ -66,18 +66,26 @@ const Checkout = () => {
                         </label>
                         <input type="text" name="customerPhone" placeholder="Type phone here" className="w-full input input-bordered" />
                     </div>
-                    <div className="w-full form-control">
-                        <label className="label">
-                            <span className="label-text">Date / Time</span>
-                        </label>
-                        <input type="text" defaultValue={dateTime} name="orderDate" placeholder="select date here" className="w-full input input-bordered" />
+                    <div className="flex-row justify-between gap-5 md:flex">
+                        <div className="w-full md:w-6/12 form-control">
+                            <label className="label">
+                                <span className="label-text">Date</span>
+                            </label>
+                            <input type="text" defaultValue={date} name="orderDate" placeholder="select date here" className="w-full input input-bordered" />
+                        </div>
+                        <div className="w-full form-control md:w-6/12">
+                            <label className="label">
+                                <span className="label-text">Time</span>
+                            </label>
+                            <input type="text" defaultValue={time} name="orderTime" placeholder="select date here" className="w-full input input-bordered" />
+                        </div>
                     </div>
                 </div>
                 <div className="w-full mt-5 form-control">
                     <label className="label">
                         <span className="label-text">Address</span>
                     </label>
-                    <textarea type="text" name="address" placeholder="Type address here" className="textarea textarea-bordered" rows={4} />
+                    <textarea type="text" name="address" placeholder="Type address here" className="textarea textarea-bordered" rows={3} />
                 </div>
                 <button type="submit" className="w-full mt-10 btn btn-primary">Order</button>
             </form>
